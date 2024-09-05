@@ -1,14 +1,14 @@
 import { ButtonHTMLAttributes } from "react";
 import "./Button.css";
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
-  innerHTML: string;
+  children: string;
   className: string;
 }
 export const Button = (props: Props) => {
-  const { innerHTML, className, ...rest } = props;
+  const { children, className, ...rest } = props;
   return (
     <button className={className} {...rest}>
-      {innerHTML}
+      {children}
     </button>
   );
 };
