@@ -1,5 +1,8 @@
 .list__modal {
+  display: flex;
+  flex-direction: column;
   border: 1px solid grey;
   width: 90%;
-  height: 65%;
+  height: 60%;
+  align-items: center;
 }
