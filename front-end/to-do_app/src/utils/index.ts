@@ -40,3 +40,26 @@ export const statusOptions: SelectOptionsI[] = [
     value: "completed",
   },
 ];
+
+export const orderOptions: SelectOptionsI[] = [
+  {
+    id: "1",
+    name: "Priority Desc",
+    value: "Priority Desc",
+  },
+  {
+    id: "2",
+    name: "Priority Asc",
+    value: "Priority Asc",
+  },
+  {
+    id: "3",
+    name: "Status Desc",
+    value: "Status Desc",
+  },
+  {
+    id: "4",
+    name: "Status Asc",
+    value: "Status Asc",
+  },
+];
