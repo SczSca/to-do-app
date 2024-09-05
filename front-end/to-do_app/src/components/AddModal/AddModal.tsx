@@ -2,12 +2,14 @@ import {} from "react";
 import "./AddModal.css";
 import { TextBox } from "../TextBox/TextBox";
 import { Button } from "../Button/Button";
+import Select from "../Select/Select";
+import { priorityOptions } from "../../utils";
 
 export const AddModal = () => {
   return (
     <div className="add__modal">
       <div className="modal__content">
-        <div className="textbox__container">
+        <div className="input__container">
           <TextBox
             id="name_add"
             name="name_add"
@@ -16,19 +18,24 @@ export const AddModal = () => {
             //onChange={(e) => handleChange(e)}
             placeholder="Introduce task name"
           />
-        </div>
-        <div className="calendar__time">
           <TextBox
             id="calendar"
             name="calendar"
-            label="Assign deadline:"
+            label="Deadline:"
             type="date"
+            //onChange={(e) => handleChange(e)}
+          />
+          <Select
+            options={priorityOptions}
+            id="priority"
+            name="priority"
+            label="Priority:"
             //onChange={(e) => handleChange(e)}
           />
         </div>
         <div className="buttons__container">
-          <Button className="button button__large__gray">Set Time</Button>
-          <Button className="button button__large__blue">Save Changes</Button>
+          <Button className="button__modal button__blue">Save Changes</Button>
+          <Button className="button__modal button__gray">Cancel</Button>
         </div>
       </div>
     </div>
