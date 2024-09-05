@@ -1,0 +1,15 @@
+.button {
+  border: none;
+  border-radius: 1.5rem;
+  height: 2rem;
+  width: 4rem;
+  background-color: #ccc;
+}
+
+.button__open__modal {
+  height: 4rem;
+  width: 12rem;
+  font-size: 1.1rem;
+  background-color: #0197f6;
+  color: #ece8e8;
+}
