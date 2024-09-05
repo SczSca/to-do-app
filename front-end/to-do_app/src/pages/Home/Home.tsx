@@ -13,10 +13,7 @@ export const Home = () => {
       <ListModal />
       <AddModal />
       <div className="new__task__container">
-        <Button
-          className="button button__open__modal"
-          innerHTML="Add new task"
-        />
+        <Button className="button button__open__modal">Add new task</Button>
       </div>
     </div>
   );
