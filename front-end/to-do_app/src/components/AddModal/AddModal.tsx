@@ -27,11 +27,8 @@ export const AddModal = () => {
           />
         </div>
         <div className="buttons__container">
-          <Button className="button button__large__gray" innerHTML="Set Time" />
-          <Button
-            className="button button__large__blue"
-            innerHTML="Save Changes"
-          />
+          <Button className="button button__large__gray">Set Time</Button>
+          <Button className="button button__large__blue">Save Changes</Button>
         </div>
       </div>
     </div>
