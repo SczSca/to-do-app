@@ -35,6 +35,7 @@ export const SearchModal = (props: Props) => {
           id="name"
           name="name"
           label="Name:"
+          type="text"
           //onChange={(e) => handleChange(e)}
           placeholder="Introduce task name"
         />
@@ -53,7 +54,7 @@ export const SearchModal = (props: Props) => {
             label="State:"
             //onChange={(e) => handleChange(e)}
           />
-          <Button className="button" innerHTML="Search" />
+          <Button className="button">Search</Button>
         </div>
       </form>
     </div>
