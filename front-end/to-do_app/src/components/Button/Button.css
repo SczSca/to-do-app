@@ -8,26 +8,31 @@
 
 .button__open__modal {
   margin: 0.5rem 0;
+  border: none;
   border-radius: 2rem;
-  height: 4rem;
-  width: 12rem;
-  font-size: 1.1rem;
-  background-color: #0197f6;
-  color: #ece8e8;
+  height: 3rem;
+  width: 9rem;
+  font-size: 1rem;
 }
 
-.button__large__gray,
-.button__large__blue {
+.button__modal {
+  border: none;
+  border-radius: 2rem;
   height: 2.5rem;
   width: 90%;
 }
 
-.button__large__gray {
-  background-color: #ece8e8;
-  color: #0197f6;
-}
-
-.button__large__blue {
+.button__blue {
   background-color: #0197f6;
   color: #ece8e8;
+}
+
+.button__black {
+  background-color: #191919;
+  color: #f6f6f6;
+}
+
+.button__gray {
+  background-color: #ece8e8;
+  color: #0197f6;
 }
