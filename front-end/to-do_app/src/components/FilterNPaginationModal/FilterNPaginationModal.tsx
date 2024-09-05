@@ -7,7 +7,6 @@ import { Pagination } from "../Pagination/Pagination";
 export const FilterNPaginationModal = () => {
   return (
     <div className="filter__pagination__modal">
-      <Pagination />
       <Select
         options={orderOptions}
         id="order"
