@@ -1,11 +1,11 @@
 import {} from "react";
-import "./AddModal.css";
+import "./AddNote.css";
 import { TextBox } from "../TextBox/TextBox";
 import { Button } from "../Button/Button";
 import Select from "../Select/Select";
 import { priorityOptions } from "../../utils";
 
-export const AddModal = () => {
+export const AddNote = () => {
   return (
     <div className="add__modal">
       <div className="modal__content">
