@@ -1,10 +1,10 @@
 import {} from "react";
-import "./ListModal.css";
+import "./List.css";
 import { Pagination } from "../Pagination/Pagination";
 
-export const ListModal = () => {
+export const List = () => {
   return (
-    <div className="list__modal">
+    <div className="list">
       <Pagination></Pagination>
     </div>
   );

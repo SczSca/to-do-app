@@ -1,4 +1,4 @@
-.list__modal {
+.list {
   display: flex;
   flex-direction: column;
   border: 1px solid grey;
