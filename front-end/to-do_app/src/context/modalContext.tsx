@@ -1,12 +1,15 @@
 import { createContext, useState } from "react";
-import { ComponentWithChildren } from "../types";
+import { ComponentWithChildren, ModalType } from "../types";
 
 //TODO cambiar el tipado para la aceptacion de param para identificar con que modal se interactua
+
 interface ModalContextI {
   openModal: () => void;
   closeModal: () => void;
   toggleModal: () => void;
+  typeModal: (type: ModalType) => void;
   isOpen: boolean;
+  modalType: ModalType;
 }
 
 //creates initial obj
@@ -18,6 +21,8 @@ modalContext.displayName = "modalProvider";
 //works as parent component
 export const ModalProvider = ({ children }: ComponentWithChildren) => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const [modalType, setModalType] = useState(ModalType.Null);
   // type
   // toogle
   // cerrar
@@ -28,6 +33,7 @@ export const ModalProvider = ({ children }: ComponentWithChildren) => {
   };
 
   const handleClosed = () => {
+    setModalType(ModalType.Null);
     setIsOpen(false);
   };
 
@@ -35,13 +41,18 @@ export const ModalProvider = ({ children }: ComponentWithChildren) => {
     setIsOpen((prev) => !prev);
   };
 
+  const handleModalType = (type: ModalType) => {
+    setModalType(type);
+  };
   return (
     <modalContext.Provider
       value={{
         openModal: handleOpen,
         closeModal: handleClosed,
         toggleModal: handleToggle,
+        typeModal: handleModalType,
         isOpen,
+        modalType,
       }}
     >
       {children}
