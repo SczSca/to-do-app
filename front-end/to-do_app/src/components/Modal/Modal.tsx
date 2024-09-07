@@ -1,6 +1,6 @@
 import { AddNote } from "../AddNote/AddNote";
 import { TimeMetrics } from "../TimeMetrics/TimeMetrics";
-
+import "./Modal.css";
 export const Modal = ({ type }: { type: "add" | "time" }) => {
   return (
     <div className="modal">
