@@ -7,3 +7,11 @@ export interface SelectOptionsI {
 export interface ComponentWithChildren {
   children: React.ReactNode;
 }
+
+export enum ModalType {
+  Add = "add",
+  Time = "time",
+  Edit = "edit",
+  Delete = "delete",
+  Null = "",
+}
