@@ -1,20 +1,23 @@
 //import { FormEvent } from "react";
-import { AddModal } from "../../components/AddModal/AddModal";
+import { useContext } from "react";
 import { BottomContainer } from "../../components/BottomContainer/BottomContainer";
-import { Button } from "../../components/Button/Button";
 import { FilterNPaginationModal } from "../../components/FilterNPaginationModal/FilterNPaginationModal";
-import { ListModal } from "../../components/ListModal/ListModal";
-import { Pagination } from "../../components/Pagination/Pagination";
-import { SearchModal } from "../../components/SearchModal/SearchModal";
+import { List } from "../../components/List/List";
+import { Modal } from "../../components/Modal/Modal";
+import { Search } from "../../components/Search/Search";
 import "./Home.css";
+import { modalContext } from "../../context/modalContext";
 export const Home = () => {
+  //
+  const { isOpen } = useContext(modalContext);
   return (
     <div className="home">
-      <SearchModal />
+      <Search />
       <FilterNPaginationModal />
-      <ListModal />
-      <AddModal />
+      <List />
+
       <BottomContainer />
+      {isOpen && <Modal type="add" />}
     </div>
   );
 };
