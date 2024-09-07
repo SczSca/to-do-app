@@ -2,7 +2,7 @@ import { ChangeEvent, DetailedHTMLProps, FormEvent, useState } from "react";
 import { TextBox } from "../TextBox/TextBox";
 import Select from "../Select/Select";
 import { priorityOptions, statusOptions } from "../../utils";
-import "./SearchModal.css";
+import "./Search.css";
 import { Button } from "../Button/Button";
 
 type Props = DetailedHTMLProps<
@@ -10,7 +10,7 @@ type Props = DetailedHTMLProps<
   HTMLDivElement
 >;
 
-export const SearchModal = (props: Props) => {
+export const Search = (props: Props) => {
   const [form, setForm] = useState({
     name: "",
     priority: "",
@@ -29,7 +29,7 @@ export const SearchModal = (props: Props) => {
     event.preventDefault();
   };
   return (
-    <div className="search__modal">
+    <div className="search">
       <form action="" onSubmit={handleSubmit}>
         <TextBox
           id="name"
