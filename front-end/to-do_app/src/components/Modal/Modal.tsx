@@ -1,14 +1,37 @@
+import { JSX } from "react";
+import { ModalType } from "../../types";
 import { AddNote } from "../AddNote/AddNote";
 import { TimeMetrics } from "../TimeMetrics/TimeMetrics";
 import "./Modal.css";
-export const Modal = ({ type }: { type: "add" | "time" }) => {
-  return (
-    <div className="modal">
-      {type === "time" ? <TimeMetrics /> : <AddNote />}
-    </div>
-  );
+
+interface Props {
+  type: ModalType;
+}
+
+export const Modal = ({ type }: Props) => {
+  const { Add, Time, Edit, Delete } = ModalType;
+
+  /**
+   * Based on the param, renderSwitch will return an specific modal_content component
+   * @param mType determines which modal will be rendered
+   * @returns  modal_content component
+   */
+  const renderSwitch = (mType: ModalType): JSX.Element => {
+    switch (mType) {
+      case Time:
+        return <TimeMetrics />;
+      case Add:
+        return <AddNote />;
+      case Edit:
+        return <></>;
+      case Delete:
+        return <></>;
+      default:
+        return <></>;
+    }
+  };
+  return <div className="modal">{renderSwitch(type)}</div>;
 };
-//TODO: AGREGAR EL TIPO DE MODAL (otra prop) accesar por useContext
 
 //e.g.
 // const ModalBody = ({ children }: ComponentWithChildren) => {
