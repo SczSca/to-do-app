@@ -3,3 +3,7 @@ export interface SelectOptionsI {
   name: string;
   value: string;
 }
+
+export interface ComponentWithChildren {
+  children: React.ReactNode;
+}
