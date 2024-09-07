@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { Button } from "../Button/Button";
-import { Pagination } from "../Pagination/Pagination";
 import "./BottomContainer.css";
 import { modalContext } from "../../context/modalContext";
 export const BottomContainer = () => {
