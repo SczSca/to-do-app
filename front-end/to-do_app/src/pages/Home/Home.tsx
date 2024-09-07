@@ -9,7 +9,7 @@ import "./Home.css";
 import { modalContext } from "../../context/modalContext";
 export const Home = () => {
   //
-  const { isOpen } = useContext(modalContext);
+  const { isOpen, modalType } = useContext(modalContext);
   return (
     <div className="home">
       <Search />
@@ -17,7 +17,7 @@ export const Home = () => {
       <List />
 
       <BottomContainer />
-      {isOpen && <Modal type="add" />}
+      {isOpen && <Modal type={modalType} />}
     </div>
   );
 };
