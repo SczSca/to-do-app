@@ -4,10 +4,9 @@ import { ComponentWithChildren, ModalType } from "../types";
 //TODO cambiar el tipado para la aceptacion de param para identificar con que modal se interactua
 
 interface ModalContextI {
-  openModal: () => void;
+  openModal: (type: ModalType) => void;
   closeModal: () => void;
   toggleModal: () => void;
-  typeModal: (type: ModalType) => void;
   isOpen: boolean;
   modalType: ModalType;
 }
@@ -28,8 +27,9 @@ export const ModalProvider = ({ children }: ComponentWithChildren) => {
   // cerrar
   // abrir
 
-  const handleOpen = () => {
+  const handleOpen = (type: ModalType) => {
     setIsOpen(true);
+    setModalType(type);
   };
 
   const handleClosed = () => {
@@ -41,16 +41,12 @@ export const ModalProvider = ({ children }: ComponentWithChildren) => {
     setIsOpen((prev) => !prev);
   };
 
-  const handleModalType = (type: ModalType) => {
-    setModalType(type);
-  };
   return (
     <modalContext.Provider
       value={{
         openModal: handleOpen,
         closeModal: handleClosed,
         toggleModal: handleToggle,
-        typeModal: handleModalType,
         isOpen,
         modalType,
       }}
