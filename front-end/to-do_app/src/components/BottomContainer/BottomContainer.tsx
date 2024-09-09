@@ -4,7 +4,7 @@ import "./BottomContainer.css";
 import { modalContext } from "../../context/modalContext";
 import { ModalType } from "../../types";
 export const BottomContainer = () => {
-  const { openModal, typeModal } = useContext(modalContext);
+  const { openModal } = useContext(modalContext);
 
   const { Add, Time } = ModalType;
   return (
@@ -13,17 +13,15 @@ export const BottomContainer = () => {
         <Button
           className="button__open__modal button__black"
           onClick={() => {
-            typeModal(Time);
-            openModal();
+            openModal(Time);
           }}
         >
           Time Metrics
         </Button>
         <Button
-          className="button__open__modal button__blue"
+          className="button__open__modal button__green"
           onClick={() => {
-            typeModal(Add);
-            openModal();
+            openModal(Add);
           }}
         >
           Add new task
