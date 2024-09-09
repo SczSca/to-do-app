@@ -15,3 +15,9 @@ export enum ModalType {
   Delete = "delete",
   Null = "",
 }
+
+export interface taskElements {
+  taskName: string;
+  priority: string;
+  deadline: Date;
+}
