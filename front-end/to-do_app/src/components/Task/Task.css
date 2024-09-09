@@ -6,7 +6,7 @@
   align-items: center;
   gap: 1rem;
   .task__name {
-    font-size: 0.88rem;
+    font-size: 1rem;
   }
 }
 
@@ -16,16 +16,54 @@ input[type="checkbox"] {
   width: fit-content;
 }
 
-.task__date {
+.task__info {
   display: flex;
   height: 60%;
-  width: 13%;
+  width: 15%;
   font-size: 0.8rem;
   border: none;
   border-radius: 0.5rem;
   padding: 0.2rem;
   align-items: center;
   justify-content: center;
+}
+
+.task__date {
   background-color: rgb(230, 228, 228);
   color: rgb(117, 115, 115);
+}
+
+.task__priority {
+  width: 10%;
+  font-size: 1rem;
+}
+
+.due__soon {
+  background-color: #ff5f57b1;
+  color: #370e0c;
+}
+
+.due__soonish {
+  background-color: #fdbb2eb1;
+  color: #2f2002;
+}
+
+.due__later {
+  background-color: #27c842b1;
+  color: #034634;
+}
+
+.high__prio {
+  background-color: #85231e;
+  color: whitesmoke;
+}
+
+.medium__prio {
+  background-color: #f1a208;
+  color: whitesmoke;
+}
+
+.low__prio {
+  background-color: #06a77d;
+  color: whitesmoke;
 }
