@@ -16,7 +16,10 @@ export const Task = () => {
         Aprender programación es una habilidad importante que puede abrir muchas
         oportunidades en diversos campos de la tecnología.
       </p>
-      <div className="task__date">
+      <div className="task__priority task__info  high__prio">
+        <p>High</p>
+      </div>
+      <div className="task__date task__info due__later">
         <p>2024-09-03T14:30:00Z</p>
       </div>
       <Actions></Actions>
