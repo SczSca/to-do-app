@@ -1,8 +1,10 @@
-import { JSX } from "react";
+import { JSX, useContext } from "react";
 import { ModalType } from "../../types";
 import { AddNote } from "../AddNote/AddNote";
 import { TimeMetrics } from "../TimeMetrics/TimeMetrics";
+import { DeleteNote } from "../DeleteNote/DeleteNote";
 import "./Modal.css";
+import { crudContext } from "../../context/crudContext";
 
 interface Props {
   type: ModalType;
@@ -10,6 +12,7 @@ interface Props {
 
 export const Modal = ({ type }: Props) => {
   const { Add, Time, Edit, Delete } = ModalType;
+  const { createTask, updateTask } = useContext(crudContext);
 
   /**
    * Based on the param, renderSwitch will return an specific modal_content component
@@ -21,11 +24,15 @@ export const Modal = ({ type }: Props) => {
       case Time:
         return <TimeMetrics />;
       case Add:
-        return <AddNote />;
+        return (
+          <AddNote IDTask="1" idTaskText="name_add" submitFunc={createTask} />
+        );
       case Edit:
-        return <></>;
+        return (
+          <AddNote IDTask="2" idTaskText="name_edit" submitFunc={updateTask} />
+        );
       case Delete:
-        return <></>;
+        return <DeleteNote></DeleteNote>;
       default:
         return <></>;
     }
