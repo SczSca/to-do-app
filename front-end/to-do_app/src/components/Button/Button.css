@@ -32,8 +32,8 @@
 .button__actions {
   border: none;
   border-radius: 1rem;
-  height: 1.3rem;
-  width: 3.5rem;
+  height: 1.5rem;
+  width: 3.8rem;
 }
 
 .button__close {
@@ -65,5 +65,9 @@
 
 .button__red {
   background-color: #c70000;
+  color: whitesmoke;
+}
+.button__green {
+  background-color: #27c841;
   color: whitesmoke;
 }
