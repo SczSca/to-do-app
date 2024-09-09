@@ -34,11 +34,12 @@ export const AddNote = ({ IDTask, idTaskText, submitFunc }: Props) => {
     // const deadlineValue = deadlineRef.current?.value ?? "";
     const taskNameElement = document.getElementById(idTaskText);
     const priorityElement = document.getElementById("priority");
-    const deadlineElement =document.getElementById('calendar');
+    const deadlineElement = document.getElementById('calendar');
 
+    //WHERE THINGS ARE BROKE
     const taskName = taskNameElement?.innerHTML.trim();
-    const priority = .current?.value ?? "";
-    const deadlineValue = priorityElement.current?.value ?? "";
+    const priority = priorityElement?.options[priorityElement.selectedIndex].text;
+    const deadlineValue = deadlineElement.current?.value ??;
     const deadline = deadlineValue
       ? new Date(deadlineValue)
       : new Date("1999-01-01");
