@@ -26,8 +26,8 @@ export const priorityOptions: SelectOptionsI[] = [
 export const statusOptions: SelectOptionsI[] = [
   {
     id: "1",
-    name: "None",
-    value: "None",
+    name: "All",
+    value: "All",
   },
   {
     id: "2",
