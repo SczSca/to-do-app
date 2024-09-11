@@ -57,9 +57,15 @@ public class TaskRepository implements TaskRepositoryI {
 
     @Override
     public List<Task> findByCriteria(TaskRequest taskRequest){
-
-        //TODO FINISH THIS
-        return taskStorage.values().stream().collect(Collectors.toList());
+        String status = taskRequest.getStatus();
+        String text = taskRequest.getText();
+        String priority =taskRequest.getPriority();
+        //TODO TRY IT
+        return taskStorage.values().stream()
+                .filter(task -> text.isEmpty() || task.getText().toLowerCase().contains(text.toLowerCase()))
+                .filter(task ->  priority.equals("All") || task.getPriority().equals(priority))
+                .filter(task -> status.equals("All") || status.equals("Done") && task.getIsDone() || status.equals("Pending") && !task.getIsDone())
+                .collect(Collectors.toList());
     }
 
     @Override
