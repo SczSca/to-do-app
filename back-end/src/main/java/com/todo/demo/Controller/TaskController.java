@@ -3,6 +3,7 @@ import java.util.List;
 
 import com.todo.demo.Entity.Task;
 import com.todo.demo.Model.dto.TaskDTO;
+import com.todo.demo.Model.dto.TimeDTO;
 import com.todo.demo.Model.request.TaskRequest;
 import com.todo.demo.Service.TaskService;
 import jakarta.validation.Valid;
@@ -17,8 +18,13 @@ public class TaskController {
     private final TaskService taskService;
 
     @GetMapping
-    public ResponseEntity<List<Task>> getAllTasks(@Valid @RequestBody TaskRequest taskRequest){
+    public ResponseEntity<List<Task>> getTasks(@Valid @RequestBody TaskRequest taskRequest){
         return taskService.getTasks(taskRequest);
+    }
+
+    @GetMapping("/time")
+    public ResponseEntity<TimeDTO> getTimeMetrics(){
+        return taskService.getTimeMetrics();
     }
 
     @PostMapping
@@ -35,4 +41,10 @@ public class TaskController {
     public ResponseEntity<String> updateTask(@Valid @RequestBody TaskDTO taskUpdate){
         return taskService.updateTask(taskUpdate);
     }
+
+    @PutMapping("/{id}/done")
+    public ResponseEntity<String> updateDoneStatus(@Valid @PathVariable("id") Long id){
+        return taskService.updateDoneStatus(id);
+    }
+
 }
