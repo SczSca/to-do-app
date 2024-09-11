@@ -5,18 +5,14 @@ import com.todo.demo.Model.dto.TaskDTO;
 import com.todo.demo.Model.dto.TimeDTO;
 import com.todo.demo.Model.request.TaskRequest;
 import com.todo.demo.Repository.TaskRepository;
-import com.todo.demo.Repository.TaskRepositoryI;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-//import java.util.*;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 //adds constructor that defines taskRepository
