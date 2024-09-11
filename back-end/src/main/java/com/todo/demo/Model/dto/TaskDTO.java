@@ -13,7 +13,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class TaskDTO {
-    @NotBlank(message = "Task id is required!")
     private Long id;
     @NotBlank(message = "Task text is required!")
     @Size(max = 120, message = "Task is too long. Must be less than 120 characters")
