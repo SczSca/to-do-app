@@ -1,13 +1,14 @@
 package com.todo.demo.Model.request;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-@NoArgsConstructor
+@AllArgsConstructor
 public class TaskRequest {
     private String text;
     private String priority;
-    private String state;
+    private String status;
 }
