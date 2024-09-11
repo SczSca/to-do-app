@@ -1,5 +1,6 @@
 package com.todo.demo.Service;
 import com.todo.demo.Entity.Task;
+import com.todo.demo.Exception.ApiRequestException;
 import com.todo.demo.Model.dto.TaskDTO;
 import com.todo.demo.Model.dto.TimeDTO;
 import com.todo.demo.Model.request.TaskRequest;
@@ -56,7 +57,10 @@ public class TaskService {
             taskRepository.save(task);
             return new ResponseEntity<String>("task was updated successfully!", HttpStatus.ACCEPTED);
         }
-        return new ResponseEntity<String>("task not found. Could not update!", HttpStatus.BAD_REQUEST);
+        throw new ApiRequestException(
+                String.format("task with id: %02d not found. Could not update!",taskUpdate.getId())
+        );
+//        return new ResponseEntity<String>("task not found. Could not update!", HttpStatus.BAD_REQUEST);
     }
 
     public ResponseEntity<String> updateDoneStatus(Long id){
@@ -64,7 +68,10 @@ public class TaskService {
         if(isUpdated){
             return new ResponseEntity<String>("Done status updated successfully!", HttpStatus.ACCEPTED);
         }
-        return new ResponseEntity<String>("Done status was not updated, not found!", HttpStatus.BAD_REQUEST);
+        throw new ApiRequestException(
+                String.format("task with id: %02d not found. Could not update!",id)
+        );
+//        return new ResponseEntity<String>("Done status was not updated, not found!", HttpStatus.BAD_REQUEST);
     }
 
     public ResponseEntity<List<Task>> getTasks(TaskRequest taskRequest){
@@ -72,7 +79,7 @@ public class TaskService {
         return new ResponseEntity<>(tasks, HttpStatus.OK);
     }
 
-    public ResponseEntity<TimeDTO> GetTimeMetrics(){
+    public ResponseEntity<TimeDTO> getTimeMetrics(){
         TimeDTO time = new TimeDTO();
         List<Task> tasks = taskRepository.findByCriteria(new TaskRequest("","All","Done"));
         time.setAverageTime(averageTime(tasks));
