@@ -72,11 +72,6 @@ input[type="checkbox"] {
   color: whitesmoke;
 }
 
-.None {
-  background-color: grey;
-  color: whitesmoke;
-}
-
 .actions {
   display: flex;
   height: 100%;
