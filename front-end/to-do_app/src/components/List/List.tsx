@@ -9,7 +9,7 @@ export const List = () => {
 
   useEffect(() => {
     getData();
-  }, [getData]);
+  }, []);
 
   return (
     <div className="list">
