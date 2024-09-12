@@ -1,6 +1,8 @@
-import {} from "react";
+import { useContext } from "react";
 import "./TasksView.css";
 import { Task } from "../Task/Task";
+import { crudContext } from "../../context/crudContext";
+import { TaskStructure } from "../../types";
 
 /**
  * TODO:
@@ -9,19 +11,15 @@ import { Task } from "../Task/Task";
  *  try not to die in the process
  *
  */
+
+// props notes
 export const TasksView = () => {
+  const { data } = useContext(crudContext);
   return (
     <div className="tasks__view">
-      <Task />
-      <Task />
-      <Task />
-      <Task />
-      <Task />
-      <Task />
-      <Task />
-      <Task />
-      <Task />
-      <Task />
+      {data.map((item: TaskStructure) => (
+        <Task key={item.id} item={item} />
+      ))}
     </div>
   );
 };
