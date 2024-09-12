@@ -4,6 +4,7 @@ import {
   TaskElements,
   TaskRequest,
   TaskStructure,
+  TaskTimes,
   priorityType,
   statusType,
 } from "../types";
@@ -12,13 +13,23 @@ import {
 interface crudContextI {
   createTask: (task: TaskElements) => Promise<void>;
   getData: () => Promise<void>;
+  getTimeMetrics: () => Promise<void>;
   updateTask: (task: TaskElements) => Promise<void>;
+  updateStatusTask: (id: number) => Promise<void>;
   deleteTask: (id: number) => Promise<void>;
-  data: TaskStructure[] | object;
   setData: React.Dispatch<React.SetStateAction<TaskStructure[]>>;
-  task: TaskElements;
   setTask: React.Dispatch<React.SetStateAction<object | TaskElements>>;
+  data: TaskStructure[] | object;
+  task: TaskElements;
+  timeMetrics: TaskTimes;
 }
+
+const blankTimeMetrics: TaskTimes = {
+  averageTime: "",
+  lowPriorTime: "",
+  mediumPriorTime: "",
+  highPriorTime: "",
+};
 
 export const crudContext = createContext<crudContextI>(null!);
 crudContext.displayName = "crudProvider";
@@ -26,6 +37,7 @@ crudContext.displayName = "crudProvider";
 export const CrudProvider = ({ children }: ComponentWithChildren) => {
   const [task, setTask] = useState<TaskElements | object>({});
   const [data, setData] = useState<TaskStructure[]>([]);
+  const [timeMetrics, setTimeMetrics] = useState<TaskTimes>(blankTimeMetrics);
 
   const baseURL = "http://localhost:9090/api/tasks";
 
@@ -66,7 +78,26 @@ export const CrudProvider = ({ children }: ComponentWithChildren) => {
       await getData();
     } catch (error) {
       console.log(error);
-      throw new Error("Failed to created Task");
+      throw new Error("Failed to update Task");
+    }
+  };
+
+  const handleUpdateDone = async (id: number) => {
+    try {
+      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+      const data = await fetch(`${baseURL}/${id}/change-status`, {
+        method: "PATCH",
+        headers: {
+          Accept: "application/json",
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json",
+        },
+      });
+      const res = await data.text();
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+      throw new Error("Failed to change Task status");
     }
   };
 
@@ -89,7 +120,7 @@ export const CrudProvider = ({ children }: ComponentWithChildren) => {
     }
   };
 
-  const getData = async () => {
+  const handleGetData = async () => {
     const taskRequest: TaskRequest = {
       taskText: "blankTask_0X0",
       priority: priorityType.All,
@@ -116,17 +147,37 @@ export const CrudProvider = ({ children }: ComponentWithChildren) => {
     }
   };
 
+  const handleGetMetrics = async () => {
+    try {
+      const data = await fetch(`${baseURL}/time`, {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json",
+        },
+      });
+      const res = (await data.json()) as TaskTimes;
+      setTimeMetrics(res);
+    } catch (error) {
+      console.log(error);
+      throw new Error("Failed to fetch tasks");
+    }
+  };
   return (
     <crudContext.Provider
       value={{
         createTask: handleCreation,
-        getData,
+        getData: handleGetData,
+        getTimeMetrics: handleGetMetrics,
         updateTask: handleUpdate,
+        updateStatusTask: handleUpdateDone,
         deleteTask: handleDelete,
         setData,
         setTask,
         task,
         data,
+        timeMetrics,
       }}
     >
       {children}
