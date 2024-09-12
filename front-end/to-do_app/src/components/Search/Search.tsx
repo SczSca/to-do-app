@@ -32,8 +32,8 @@ export const Search = (props: Props) => {
     <div className="search">
       <form action="" onSubmit={handleSubmit}>
         <TextBox
-          id="name"
-          name="name"
+          id="nameSearch"
+          name="nameSearch"
           label="Name:"
           type="text"
           //onChange={(e) => handleChange(e)}
