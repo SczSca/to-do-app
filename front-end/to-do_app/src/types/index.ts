@@ -16,8 +16,38 @@ export enum ModalType {
   Null = "",
 }
 
-export interface taskElements {
-  taskName: string;
-  priority: string;
-  deadline: Date;
+export interface TaskElements {
+  id?: number;
+  text?: string;
+  priority?: string;
+  dueDate?: Date;
+}
+
+export enum priorityType {
+  All = "All",
+  Low = "Low",
+  Medium = "Medium",
+  High = "High",
+}
+
+export enum statusType {
+  All = "All",
+  Done = "Done",
+  Pending = "Pending",
+}
+
+export interface TaskRequest {
+  taskText: string;
+  priority: priorityType;
+  status: statusType;
+}
+
+export interface TaskStructure {
+  creationDate: string;
+  doneDate?: string;
+  dueDate?: string;
+  id: number;
+  isDone: boolean;
+  priority: priorityType;
+  text: string;
 }
