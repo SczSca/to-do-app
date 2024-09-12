@@ -3,8 +3,10 @@ import { Button } from "../Button/Button";
 import "./BottomContainer.css";
 import { modalContext } from "../../context/modalContext";
 import { ModalType } from "../../types";
+import { crudContext } from "../../context/crudContext";
 export const BottomContainer = () => {
   const { openModal } = useContext(modalContext);
+  const { getTimeMetrics } = useContext(crudContext);
 
   const { Add, Time } = ModalType;
   return (
@@ -13,6 +15,7 @@ export const BottomContainer = () => {
         <Button
           className="button__open__modal button__black"
           onClick={() => {
+            void getTimeMetrics();
             openModal(Time);
           }}
         >
