@@ -36,7 +36,7 @@ export const AddNote = ({ isEdit }: Props) => {
 
   return (
     <div className="modal__content">
-      <form className="input__container" onSubmit={void handleSubmit}>
+      <form className="input__container" onSubmit={handleSubmit}>
         <TextBox
           id="nameTextBox"
           name="text"
