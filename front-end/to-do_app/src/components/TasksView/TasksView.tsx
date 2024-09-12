@@ -17,9 +17,9 @@ export const TasksView = () => {
   const { data } = useContext(crudContext);
   return (
     <div className="tasks__view">
-      {data.map((item: TaskStructure) => (
-        <Task key={item.id} item={item} />
-      ))}
+      {/* Checks if data is an array (meaning it has tasks) to render tasks, render nothing if not */}
+      {Array.isArray(data) &&
+        data.map((item: TaskStructure) => <Task key={item.id} item={item} />)}
     </div>
   );
 };
