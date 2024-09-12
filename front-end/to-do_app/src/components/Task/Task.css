@@ -16,6 +16,10 @@ input[type="checkbox"] {
   width: fit-content;
 }
 
+.task__name {
+  width: 50%;
+}
+
 .task__info {
   display: flex;
   height: 60%;
@@ -53,17 +57,29 @@ input[type="checkbox"] {
   color: #034634;
 }
 
-.high__prio {
+.High {
   background-color: #85231e;
   color: whitesmoke;
 }
 
-.medium__prio {
+.Medium {
   background-color: #f1a208;
   color: whitesmoke;
 }
 
-.low__prio {
+.Low {
   background-color: #06a77d;
   color: whitesmoke;
+}
+
+.None {
+  background-color: grey;
+  color: whitesmoke;
+}
+
+.actions {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  gap: 1rem;
 }
