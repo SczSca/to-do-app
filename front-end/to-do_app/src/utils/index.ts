@@ -9,17 +9,17 @@ export const priorityOptions: SelectOptionsI[] = [
   {
     id: "2",
     name: "Low",
-    value: "low",
+    value: "Low",
   },
   {
     id: "3",
     name: "Medium",
-    value: "medium",
+    value: "Medium",
   },
   {
     id: "4",
     name: "High",
-    value: "high",
+    value: "High",
   },
 ];
 
