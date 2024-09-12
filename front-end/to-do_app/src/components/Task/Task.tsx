@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { crudContext } from "../../context/crudContext";
 import "./Task.css";
 import { ModalType, TaskStructure } from "../../types";
@@ -16,8 +16,11 @@ interface Props {
   item: TaskStructure;
 }
 export const Task = ({ item }: Props) => {
-  const { setTask } = useContext(crudContext);
+  const [isChecked, setIsChecked] = useState(item.isDone);
+
+  const { setTask, updateStatusTask } = useContext(crudContext);
   const { openModal } = useContext(modalContext);
+
   const { Edit, Delete } = ModalType;
 
   const handleOnClicked = (modal: ModalType.Edit | ModalType.Delete) => {
@@ -25,15 +28,20 @@ export const Task = ({ item }: Props) => {
     setTask(item);
   };
 
-  const handleOnChange = (id: number) => {};
+  const handleOnChange = async (id: number) => {
+    setIsChecked((prevChecked) => !prevChecked);
+    await updateStatusTask(id);
+  };
+
   return (
     <div className="task">
       <input
         type="checkbox"
         name="done"
         id=""
+        checked={isChecked}
         onChange={() => {
-          handleOnChange(item.id);
+          void handleOnChange(item.id);
         }}
       />
       <p className="task__name">{item.text}</p>
