@@ -4,8 +4,7 @@ import "./TimeMetrics.css";
 import { Button } from "../Button/Button";
 
 export const TimeMetrics = () => {
-  const { prueba, closeModal } = useContext(modalContext);
-  console.log(prueba);
+  const { closeModal } = useContext(modalContext);
   // const
   return (
     <div className="modal__content__time">
