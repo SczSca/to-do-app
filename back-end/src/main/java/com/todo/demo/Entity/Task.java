@@ -23,17 +23,7 @@ public class Task {
     public String toString() {
         return "ToDo{ " + "id=" + id + ", text=" + text + ", dueDate=" + dueDate + ", isDone=" + isDone + ", doneDate=" + doneDate + ", priority=" + priority + ", creationDate=" + creationDate + " }";
     }
-//    public Task() {}
 
-//    public Task(Long id, String text, LocalDate dueDate, Boolean isDone, LocalDateTime doneDate, String priority, LocalDateTime creationDate ) {
-//        this.id = id;
-//        this.text = text;
-//        this.dueDate = dueDate;
-//        this.isDone = isDone;
-//        this.doneDate = doneDate;
-//        this.priority = priority;
-//        this.creationDate = creationDate;
-//    }
 
 }
 
