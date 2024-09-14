@@ -1,10 +1,4 @@
-import {
-  ChangeEvent,
-  DetailedHTMLProps,
-  FormEvent,
-  useContext,
-  useState,
-} from "react";
+import { useContext } from "react";
 import { TextBox } from "../TextBox/TextBox";
 import Select from "../Select/Select";
 import { priorityOptions, statusOptions } from "../../utils";
@@ -13,21 +7,8 @@ import { Button } from "../Button/Button";
 import { TaskRequest } from "../../types";
 import { crudContext } from "../../context/crudContext";
 
-type Props = DetailedHTMLProps<
-  React.HTMLAttributes<HTMLDivElement>,
-  HTMLDivElement
->;
-
-export const Search = (props: Props) => {
+export const Search = () => {
   const { getData } = useContext(crudContext);
-
-  // const handleChange = (
-  //   event: ChangeEvent<HTMLSelectElement | HTMLInputElement>
-  // ) => {
-  //   setForm((prev) => {
-  //     return { ...prev, [event.target.name]: event.target.value };
-  //   });
-  // };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
