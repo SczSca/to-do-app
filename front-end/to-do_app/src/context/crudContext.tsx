@@ -7,12 +7,15 @@ import {
   TaskTimes,
   priorityType,
   statusType,
+  order,
+  TasksPageResult,
 } from "../types";
+import { priorityMap } from "../utils";
 
 //TODO: ADJUST TYPE
 interface crudContextI {
   createTask: (task: TaskElements) => Promise<void>;
-  getData: () => Promise<void>;
+  getData: (taskRequest: TaskRequest) => Promise<void>;
   getTimeMetrics: () => Promise<void>;
   updateTask: (task: TaskElements) => Promise<void>;
   updateStatusTask: (id: number) => Promise<void>;
@@ -31,6 +34,12 @@ const blankTimeMetrics: TaskTimes = {
   highPriorTime: "",
 };
 
+const baseTaskRequest: TaskRequest = {
+  taskText: "blankTask_0X0",
+  priority: priorityType.All,
+  status: statusType.All,
+};
+
 export const crudContext = createContext<crudContextI>(null!);
 crudContext.displayName = "crudProvider";
 
@@ -38,6 +47,8 @@ export const CrudProvider = ({ children }: ComponentWithChildren) => {
   const [task, setTask] = useState<TaskElements | object>({});
   const [data, setData] = useState<TaskStructure[]>([]);
   const [timeMetrics, setTimeMetrics] = useState<TaskTimes>(blankTimeMetrics);
+  const [priorOrder, setPriorOrder] = useState<order>("desc");
+  const [dateOrder, setDateOrder] = useState<order>("asc");
 
   const baseURL = "http://localhost:9090/api/tasks";
 
@@ -54,7 +65,7 @@ export const CrudProvider = ({ children }: ComponentWithChildren) => {
       });
       const res = await data.text();
       console.log(res);
-      await getData();
+      await handleGetData();
     } catch (error) {
       console.log(error);
       throw new Error("Failed to created Task");
@@ -75,7 +86,7 @@ export const CrudProvider = ({ children }: ComponentWithChildren) => {
       });
       const res = await data.text();
       console.log(res);
-      await getData();
+      await handleGetData();
     } catch (error) {
       console.log(error);
       throw new Error("Failed to update Task");
@@ -113,23 +124,22 @@ export const CrudProvider = ({ children }: ComponentWithChildren) => {
       });
       const res = await data.text();
       console.log(res);
-      await getData();
+      await handleGetData();
     } catch (error) {
       console.log(error);
       throw new Error("Failed to created Task");
     }
   };
 
-  const handleGetData = async () => {
-    const taskRequest: TaskRequest = {
-      taskText: "blankTask_0X0",
-      priority: priorityType.All,
-      status: statusType.All,
-    };
-
+  const handleGetData = async (
+    taskRequest: TaskRequest = baseTaskRequest,
+    page = 1,
+    isDateAsc: order = order.Asc,
+    isPriorAsc: order = order.Asc
+  ) => {
     try {
       const data = await fetch(
-        `${baseURL}/search/prior/${taskRequest.priority}/status/${taskRequest.status}/text/${taskRequest.taskText}`,
+        `${baseURL}/search/prior/${taskRequest.priority}/status/${taskRequest.status}/text/${taskRequest.taskText}/page/${page}/dateAsc/${isDateAsc}/priorAsc/${isPriorAsc}`,
         {
           method: "GET",
           headers: {
@@ -139,8 +149,8 @@ export const CrudProvider = ({ children }: ComponentWithChildren) => {
           },
         }
       );
-      const res = (await data.json()) as TaskStructure[];
-      setData(res);
+      const res = (await data.json()) as TasksPageResult;
+      setData(res.tasksFromPage);
     } catch (error) {
       console.log(error);
       throw new Error("Failed to fetch tasks");
@@ -164,6 +174,7 @@ export const CrudProvider = ({ children }: ComponentWithChildren) => {
       throw new Error("Failed to fetch tasks");
     }
   };
+
   return (
     <crudContext.Provider
       value={{
