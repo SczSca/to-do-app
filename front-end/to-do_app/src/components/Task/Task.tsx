@@ -33,6 +33,29 @@ export const Task = ({ item }: Props) => {
     await updateStatusTask(id);
   };
 
+  const handleDateStyle = () => {
+    if (!item.dueDate) {
+      return "";
+    }
+    let dateStyle = "due";
+    const actualDate: Date = new Date();
+    const dateComparison: number =
+      new Date(item.dueDate).getTime() - actualDate.getTime();
+    const dateComparisonDays: number = Math.ceil(
+      dateComparison / (1000 * 3600 * 24)
+    );
+
+    if (dateComparisonDays <= 7) {
+      dateStyle += "__soon";
+    } else if (dateComparisonDays <= 14) {
+      dateStyle += "__soonish";
+    } else {
+      dateStyle += "__later";
+    }
+    return dateStyle;
+  };
+  const dateStyle = handleDateStyle();
+
   return (
     <div className="task">
       <input
@@ -48,8 +71,12 @@ export const Task = ({ item }: Props) => {
       <div className={`task__priority task__info  high__prio ${item.priority}`}>
         <p>{item.priority}</p>
       </div>
-      <div className="task__date task__info due__later">
-        <p>{new Date(item.dueDate ? item.dueDate : "").toLocaleDateString()}</p>
+      <div className={`task__date task__info ${dateStyle}`}>
+        <p>
+          {item.dueDate
+            ? new Date(item.dueDate).toLocaleDateString()
+            : "No due date"}
+        </p>
       </div>
 
       <div className="actions">
