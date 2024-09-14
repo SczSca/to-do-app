@@ -13,17 +13,43 @@ interface Props {
 }
 
 export const AddNote = ({ isEdit }: Props) => {
+  const [error, setError] = useState("");
   const { closeModal } = useContext(modalContext);
   const { createTask, updateTask, task, setTask } = useContext(crudContext);
+
+  //remove all option
+  const priorityOpts = priorityOptions.slice(1);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const formElements = new FormData(event.target as HTMLFormElement);
+    const form = event.target as HTMLFormElement;
+    const taskTextInput =
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      form.querySelector<HTMLInputElement>('input[name="text"]')!;
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const taskDateInput = form.querySelector<HTMLInputElement>(
+      'input[name="dueDate"]'
+    )!;
+
+    const dateVal = taskDateInput.value;
+    const textVal = taskTextInput.value;
+    console.log(textVal);
+    if (textVal.length > 120) {
+      taskTextInput.value = "";
+      setError("Task's text must be less than 120 chars.");
+      setTimeout(() => {
+        setError("");
+      }, 3000);
+      return Promise;
+    }
+
+    const formElements = new FormData(form);
     const formData = Object.fromEntries(
       formElements
     ) as unknown as TaskElements;
     formData.id = task.id;
+    formData.dueDate = new Date(`${dateVal}T23:59:59Z`);
     console.log(formData);
 
     if (isEdit) {
@@ -33,7 +59,7 @@ export const AddNote = ({ isEdit }: Props) => {
     }
     closeModal();
   };
-
+  console.log(task.dueDate);
   return (
     <div className="modal__content">
       <form className="input__container" onSubmit={handleSubmit}>
@@ -46,17 +72,19 @@ export const AddNote = ({ isEdit }: Props) => {
           placeholder="Introduce task name"
           defaultValue={task.text ?? ""}
         />
-        {/* {error && <p style={{ color: "red" }}>{error}</p>} */}
+        {error && <p style={{ color: "red" }}>{error}</p>}
         <TextBox
           id="dueDate"
           name="dueDate"
           label="Deadline:"
           type="date"
-          defaultValue={task.dueDate ?? ""}
+          // For some reason, this works fine, but is marked as an error in code
+          defaultValue={task.dueDate.split("T")[0] ?? ""}
+          min={new Date().toISOString().split("T")[0]}
           // onChange={(e) => handleChange(e)}
         />
         <Select
-          options={priorityOptions}
+          options={priorityOpts}
           id="priority"
           name="priority"
           label="Priority:"
