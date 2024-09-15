@@ -154,7 +154,9 @@ export const CrudProvider = ({ children }: ComponentWithChildren) => {
         }
       );
       const res = (await data.json()) as TasksPageResult;
+
       setData(res.tasksFromPage);
+      setTotalPages(res.totalPages);
     } catch (error) {
       console.log(error);
       throw new Error("Failed to fetch tasks");
