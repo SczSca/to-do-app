@@ -16,6 +16,11 @@ export const Pagination = ({
   currentPage,
 }: Props) => {
   // llamada 10
+  const paginationRange = usePagination({
+    currentPage,
+    totalPages, // Ya no necesitas totalCount y pageSize exactos
+    siblingCount,
+  });
 
   const [pagination, setPagination] = useState(1);
   return (
