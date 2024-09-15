@@ -1,6 +1,5 @@
-import { useState } from "react";
+import { usePagination, DOTS } from "../../hooks/usePagination";
 import "./Pagination.css";
-import { Button } from "../Button/Button";
 
 export const Pagination = () => {
   // llamada 10
