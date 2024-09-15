@@ -69,20 +69,19 @@ export const Pagination = ({
                 onPageChange(pageNumber as number);
               }}
             >
-        {"<"}
-      </Button>
-      <p>{pagination}</p>
-      <Button
-        className="button__pagination"
-        onClick={() => {
-          // llamada
-          // aumenat la paginacion
-          // fetch(pagination + 1 )
-          setPagination((prev) => prev + 1);
-        }}
-      >
-        {">"}
-      </Button>
+              {pageNumber}
+            </li>
+          );
+        })}
+        <li
+          className={`pagination-item ${
+            currentPage === lastPage ? "disabled" : ""
+          }`}
+          onClick={onNext}
+        >
+          <div className="arrow right" />
+        </li>
+      </ul>
     </div>
   );
 };
