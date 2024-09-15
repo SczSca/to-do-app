@@ -140,12 +140,7 @@ export const CrudProvider = ({ children }: ComponentWithChildren) => {
     }
   };
 
-  const handleGetData = async (
-    taskRequest: TaskRequest = baseTaskRequest,
-    page = 1,
-    isDateAsc: order = order.Asc,
-    isPriorAsc: order = order.Asc
-  ) => {
+  const handleGetData = async (page = 1) => {
     try {
       const data = await fetch(
         `${baseURL}/search/prior/${taskRequest.priority}/status/${taskRequest.status}/text/${taskRequest.taskText}/page/${page}/dateAsc/${isDateAsc}/priorAsc/${isPriorAsc}`,
