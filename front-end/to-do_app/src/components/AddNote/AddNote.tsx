@@ -1,4 +1,4 @@
-import { useContext, useRef, useState } from "react";
+import { useContext, useState } from "react";
 import "./AddNote.css";
 import { TextBox } from "../TextBox/TextBox";
 import { Button } from "../Button/Button";
@@ -68,7 +68,6 @@ export const AddNote = ({ isEdit }: Props) => {
           name="text"
           label="Name:"
           type="text"
-          // onChange={(e) => handleChange(e)}
           placeholder="Introduce task name"
           defaultValue={task.text ?? ""}
         />
@@ -79,9 +78,8 @@ export const AddNote = ({ isEdit }: Props) => {
           label="Deadline:"
           type="date"
           // For some reason, this works fine, but is marked as an error in code
-          defaultValue={task.dueDate.split("T")[0] ?? ""}
+          defaultValue={task.dueDate ? task.dueDate.split("T")[0] : ""}
           min={new Date().toISOString().split("T")[0]}
-          // onChange={(e) => handleChange(e)}
         />
         <Select
           options={priorityOpts}
@@ -89,7 +87,6 @@ export const AddNote = ({ isEdit }: Props) => {
           name="priority"
           label="Priority:"
           defaultValue={task.priority ?? ""}
-          // onChange={(e) => handleChange(e)}
         />
         <div className="buttons__container">
           <Button className="button__modal button__blue" type="submit">
