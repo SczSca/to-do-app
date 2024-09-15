@@ -73,7 +73,6 @@ export const CrudProvider = ({ children }: ComponentWithChildren) => {
         body: JSON.stringify(task),
       });
       const res = await data.text();
-      console.log(res);
       await handleGetData(currentPage);
     } catch (error) {
       console.log(error);
@@ -94,7 +93,6 @@ export const CrudProvider = ({ children }: ComponentWithChildren) => {
         body: JSON.stringify(task),
       });
       const res = await data.text();
-      console.log(res);
       await handleGetData(currentPage);
     } catch (error) {
       console.log(error);
@@ -114,7 +112,6 @@ export const CrudProvider = ({ children }: ComponentWithChildren) => {
         },
       });
       const res = await data.text();
-      console.log(res);
     } catch (error) {
       console.log(error);
       throw new Error("Failed to change Task status");
@@ -132,7 +129,6 @@ export const CrudProvider = ({ children }: ComponentWithChildren) => {
         },
       });
       const res = await data.text();
-      console.log(res);
       await handleGetData();
     } catch (error) {
       console.log(error);
