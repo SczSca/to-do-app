@@ -10,7 +10,6 @@ import {
   order,
   TasksPageResult,
 } from "../types";
-import { priorityMap } from "../utils";
 
 //TODO: ADJUST TYPE
 interface crudContextI {
