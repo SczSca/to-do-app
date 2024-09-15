@@ -8,7 +8,7 @@ import { TaskRequest } from "../../types";
 import { crudContext } from "../../context/crudContext";
 
 export const Search = () => {
-  const { getData } = useContext(crudContext);
+  const { getData, setTaskRequest, taskRequest } = useContext(crudContext);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
