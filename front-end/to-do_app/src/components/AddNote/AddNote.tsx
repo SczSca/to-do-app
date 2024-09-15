@@ -50,7 +50,6 @@ export const AddNote = ({ isEdit }: Props) => {
     ) as unknown as TaskElements;
     formData.id = task.id;
     formData.dueDate = new Date(`${dateVal}T23:59:59Z`);
-    console.log(formData);
 
     if (isEdit) {
       await updateTask(formData);
