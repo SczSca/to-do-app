@@ -10,7 +10,13 @@ import { crudContext } from "../../context/crudContext";
 export const Search = () => {
   const { getData, setTaskRequest, taskRequest } = useContext(crudContext);
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  // getData will be called after taskRequest is set on handleSubmit
+  useEffect(() => {
+    getData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [taskRequest]);
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const form = event.target as HTMLFormElement;
     const formElements = new FormData(form);
@@ -20,9 +26,10 @@ export const Search = () => {
     //Set value used in backend to let it know it is blank
     formData.taskText = text == "" ? "blankTask_0X0" : text;
 
-    await getData(formData);
+    //now the task info requested will be saved on taskRequest in crudContext
+    setTaskRequest(formData);
 
-    // Acceder al input directamente desde el formulario
+    // direct access to textInput to erase value
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const taskTextInput = form.querySelector<HTMLInputElement>(
       'input[name="taskText"]'
