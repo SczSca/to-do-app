@@ -55,6 +55,9 @@ export const CrudProvider = ({ children }: ComponentWithChildren) => {
   const [timeMetrics, setTimeMetrics] = useState<TaskTimes>(blankTimeMetrics);
   const [priorOrder, setPriorOrder] = useState<order>(order.Asc);
   const [dateOrder, setDateOrder] = useState<order>(order.Asc);
+  const [totalPages, setTotalPages] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [taskRequest, setTaskRequest] = useState<TaskRequest>(baseTaskRequest);
 
   const baseURL = "http://localhost:9090/api/tasks";
 
