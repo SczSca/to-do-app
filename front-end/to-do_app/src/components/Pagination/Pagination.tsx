@@ -22,7 +22,25 @@ export const Pagination = ({
     siblingCount,
   });
 
-  const [pagination, setPagination] = useState(1);
+  // no render if there is no pages
+  if (!paginationRange) {
+    return null;
+  }
+
+  const onNext = () => {
+    if (currentPage < totalPages) {
+      onPageChange(currentPage + 1);
+    }
+  };
+
+  const onPrevious = () => {
+    if (currentPage > 1) {
+      onPageChange(currentPage - 1);
+    }
+  };
+
+  const lastPage = totalPages;
+
   return (
     <div className="pagination">
       <Button
