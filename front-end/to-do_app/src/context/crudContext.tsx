@@ -190,9 +190,16 @@ export const CrudProvider = ({ children }: ComponentWithChildren) => {
         deleteTask: handleDelete,
         setData,
         setTask,
+        setTaskRequest,
+        setPriorOrder,
+        setDateOrder,
+        setCurrentPage,
+        currentPage,
         task,
+        taskRequest,
         data,
         timeMetrics,
+        totalPages,
       }}
     >
       {children}
