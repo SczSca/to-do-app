@@ -74,7 +74,7 @@ export const CrudProvider = ({ children }: ComponentWithChildren) => {
       });
       const res = await data.text();
       console.log(res);
-      await handleGetData();
+      await handleGetData(currentPage);
     } catch (error) {
       console.log(error);
       throw new Error("Failed to created Task");
@@ -95,7 +95,7 @@ export const CrudProvider = ({ children }: ComponentWithChildren) => {
       });
       const res = await data.text();
       console.log(res);
-      await handleGetData();
+      await handleGetData(currentPage);
     } catch (error) {
       console.log(error);
       throw new Error("Failed to update Task");
