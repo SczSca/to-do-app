@@ -43,9 +43,29 @@ export const Pagination = ({
 
   return (
     <div className="pagination">
-      <Button
-        className="button__pagination"
-        onClick={() => {
+      <ul className={`pagination-container`}>
+        <li
+          className={`pagination-item ${currentPage === 1 ? "disabled" : ""}`}
+          onClick={onPrevious}
+        >
+          <div className="arrow left" />
+        </li>
+        {paginationRange.map((pageNumber, index) => {
+          if (pageNumber === DOTS) {
+            return (
+              <li key={index} className="pagination-item dots">
+                &#8230;
+              </li>
+            );
+          }
+
+          return (
+            <li
+              key={index}
+              className={`pagination-item ${
+                pageNumber === currentPage ? "selected" : ""
+              }`}
+              onClick={() => {
           // llamada
           // aumenat la paginacion
           // fetch(pagination + 1 )
