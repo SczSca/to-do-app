@@ -34,7 +34,7 @@ export const AddNote = ({ isEdit }: Props) => {
 
     const dateVal = taskDateInput.value;
     const textVal = taskTextInput.value;
-    console.log(textVal);
+    
     if (textVal.length > 120) {
       taskTextInput.value = "";
       setError("Task's text must be less than 120 chars.");
