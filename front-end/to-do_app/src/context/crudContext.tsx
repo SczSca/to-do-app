@@ -21,9 +21,16 @@ interface crudContextI {
   deleteTask: (id: number) => Promise<void>;
   setData: React.Dispatch<React.SetStateAction<TaskStructure[]>>;
   setTask: React.Dispatch<React.SetStateAction<object | TaskElements>>;
+  setTaskRequest: React.Dispatch<React.SetStateAction<TaskRequest>>;
+  setPriorOrder: React.Dispatch<React.SetStateAction<order>>;
+  setDateOrder: React.Dispatch<React.SetStateAction<order>>;
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
+  currentPage: number;
   data: TaskStructure[] | object;
   task: TaskElements;
+  taskRequest: TaskRequest;
   timeMetrics: TaskTimes;
+  totalPages: number;
 }
 
 const blankTimeMetrics: TaskTimes = {
