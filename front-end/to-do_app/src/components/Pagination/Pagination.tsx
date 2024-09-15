@@ -66,12 +66,9 @@ export const Pagination = ({
                 pageNumber === currentPage ? "selected" : ""
               }`}
               onClick={() => {
-          // llamada
-          // aumenat la paginacion
-          // fetch(pagination + 1 )
-          setPagination((prev) => prev + 1);
-        }}
-      >
+                onPageChange(pageNumber as number);
+              }}
+            >
         {"<"}
       </Button>
       <p>{pagination}</p>
