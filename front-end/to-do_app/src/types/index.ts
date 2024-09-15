@@ -51,3 +51,21 @@ export interface TaskStructure {
   priority: priorityType;
   text: string;
 }
+
+export interface TaskTimes {
+  averageTime: string;
+  lowPriorTime: string;
+  mediumPriorTime: string;
+  highPriorTime: string;
+}
+
+export enum order {
+  Asc = "1",
+  Desc = "0",
+}
+
+export interface TasksPageResult {
+  tasksFromPage: TaskStructure[];
+  totalPages: number;
+  page: number;
+}
