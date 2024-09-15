@@ -7,9 +7,6 @@ import { crudContext } from "../../context/crudContext";
 export const List = () => {
   const { getData } = useContext(crudContext);
 
-  useEffect(() => {
-    getData();
-  }, []);
 
   return (
     <div className="list">
