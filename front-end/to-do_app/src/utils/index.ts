@@ -3,8 +3,8 @@ import { SelectOptionsI } from "../types";
 export const priorityOptions: SelectOptionsI[] = [
   {
     id: "1",
-    name: "None",
-    value: "None",
+    name: "All",
+    value: "All",
   },
   {
     id: "2",
@@ -32,12 +32,12 @@ export const statusOptions: SelectOptionsI[] = [
   {
     id: "2",
     name: "Pending",
-    value: "pending",
+    value: "Pending",
   },
   {
     id: "3",
     name: "Completed",
-    value: "completed",
+    value: "Completed",
   },
 ];
 
