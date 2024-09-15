@@ -143,7 +143,7 @@ export const CrudProvider = ({ children }: ComponentWithChildren) => {
   const handleGetData = async (page = 1) => {
     try {
       const data = await fetch(
-        `${baseURL}/search/prior/${taskRequest.priority}/status/${taskRequest.status}/text/${taskRequest.taskText}/page/${page}/dateAsc/${isDateAsc}/priorAsc/${isPriorAsc}`,
+        `${baseURL}/search/prior/${taskRequest.priority}/status/${taskRequest.status}/text/${taskRequest.taskText}/page/${page}/dateAsc/${dateOrder}/priorAsc/${priorOrder}`,
         {
           method: "GET",
           headers: {
