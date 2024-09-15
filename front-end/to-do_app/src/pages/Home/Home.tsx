@@ -1,4 +1,3 @@
-//import { FormEvent } from "react";
 import { useContext } from "react";
 import { BottomContainer } from "../../components/BottomContainer/BottomContainer";
 import { FilterNPaginationModal } from "../../components/FilterNPaginationModal/FilterNPaginationModal";
@@ -8,7 +7,6 @@ import { Search } from "../../components/Search/Search";
 import "./Home.css";
 import { modalContext } from "../../context/modalContext";
 export const Home = () => {
-  //
   const { isOpen, modalType } = useContext(modalContext);
   return (
     <div className="home">
