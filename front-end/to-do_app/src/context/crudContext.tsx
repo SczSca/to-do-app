@@ -14,7 +14,7 @@ import {
 //TODO: ADJUST TYPE
 interface crudContextI {
   createTask: (task: TaskElements) => Promise<void>;
-  getData: (taskRequest: TaskRequest) => Promise<void>;
+  getData: (page?: number) => Promise<void>;
   getTimeMetrics: () => Promise<void>;
   updateTask: (task: TaskElements) => Promise<void>;
   updateStatusTask: (id: number) => Promise<void>;
