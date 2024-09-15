@@ -47,8 +47,8 @@ export const CrudProvider = ({ children }: ComponentWithChildren) => {
   const [task, setTask] = useState<TaskElements | object>({});
   const [data, setData] = useState<TaskStructure[]>([]);
   const [timeMetrics, setTimeMetrics] = useState<TaskTimes>(blankTimeMetrics);
-  const [priorOrder, setPriorOrder] = useState<order>("desc");
-  const [dateOrder, setDateOrder] = useState<order>("asc");
+  const [priorOrder, setPriorOrder] = useState<order>(order.Asc);
+  const [dateOrder, setDateOrder] = useState<order>(order.Asc);
 
   const baseURL = "http://localhost:9090/api/tasks";
 
