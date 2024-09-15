@@ -1,7 +1,20 @@
 import { usePagination, DOTS } from "../../hooks/usePagination";
 import "./Pagination.css";
 
-export const Pagination = () => {
+interface Props {
+  onPageChange: (page: number) => void;
+  totalPages: number; // maybe switch to a useState val stored in crudContext
+  siblingCount?: number;
+  currentPage: number; // maybe switch to a useState val stored in crudContext
+  className?: string;
+}
+
+export const Pagination = ({
+  onPageChange,
+  totalPages,
+  siblingCount = 1,
+  currentPage,
+}: Props) => {
   // llamada 10
 
   const [pagination, setPagination] = useState(1);
