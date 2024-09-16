@@ -1,8 +1,8 @@
 import { useContext, useEffect, useRef } from "react";
 import "./FilterNPaginationModal.css";
-import Select from "../Select/Select";
-import { orderOptions } from "../../utils";
-import { Pagination } from "../Pagination/Pagination";
+import { crudContext } from "../../context/crudContext";
+import { Button } from "../Button/Button";
+import { order } from "../../types";
 
 export const FilterNPaginationModal = () => {
   return (
