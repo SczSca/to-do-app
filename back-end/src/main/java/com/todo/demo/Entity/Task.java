@@ -2,6 +2,8 @@ package com.todo.demo.Entity;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,7 +15,7 @@ public class Task {
 
     private Long id;
     private String text;
-    private LocalDate dueDate;
+    private OffsetDateTime dueDate;
     private Boolean isDone;
     private LocalDateTime doneDate;
     private String priority;
@@ -23,8 +25,6 @@ public class Task {
     public String toString() {
         return "ToDo{ " + "id=" + id + ", text=" + text + ", dueDate=" + dueDate + ", isDone=" + isDone + ", doneDate=" + doneDate + ", priority=" + priority + ", creationDate=" + creationDate + " }";
     }
-
-
 }
 
 
