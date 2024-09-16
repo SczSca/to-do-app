@@ -60,8 +60,8 @@ export interface TaskTimes {
 }
 
 export enum order {
-  Asc = "1",
-  Desc = "0",
+  Asc = "Asc",
+  Desc = "Desc",
 }
 
 export interface TasksPageResult {
