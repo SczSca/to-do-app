@@ -1,10 +1,10 @@
 import { useContext, useEffect, useRef } from "react";
-import "./FilterNPaginationModal.css";
+import "./Filter.css";
 import { crudContext } from "../../context/crudContext";
 import { Button } from "../Button/Button";
 import { order } from "../../types";
 
-export const FilterNPaginationModal = () => {
+export const Filter = () => {
   const { getData, setDateOrder, setPriorOrder, priorOrder, dateOrder } =
     useContext(crudContext);
   const isFirstRender = useRef(true); // Track if it's the first render

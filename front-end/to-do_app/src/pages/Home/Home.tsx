@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { BottomContainer } from "../../components/BottomContainer/BottomContainer";
-import { FilterNPaginationModal } from "../../components/FilterNPaginationModal/FilterNPaginationModal";
+import { Filter } from "../../components/Filter/Filter";
 import { List } from "../../components/List/List";
 import { Modal } from "../../components/Modal/Modal";
 import { Search } from "../../components/Search/Search";
@@ -11,7 +11,7 @@ export const Home = () => {
   return (
     <div className="home">
       <Search />
-      <FilterNPaginationModal />
+      <Filter />
       <List />
 
       <BottomContainer />
