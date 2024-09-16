@@ -4,14 +4,16 @@
   height: 8%;
   justify-content: center;
   align-items: center;
-  .select {
-    position: absolute;
-    right: 0px;
-    label {
-      margin-left: 29%;
-    }
-    select {
-      width: 40%;
-    }
+}
+
+.sorts {
+  display: flex;
+  position: absolute;
+  left: 5.5rem;
+  width: 40%;
+  gap: 1.5rem;
+  label {
+    font-weight: 600;
+    color: #191919;
   }
 }
