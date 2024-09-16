@@ -25,13 +25,32 @@ export const FilterNPaginationModal = () => {
   };
   return (
     <div className="filter__pagination__modal">
-      <Select
-        options={orderOptions}
-        id="order"
-        name="order"
-        label="Order:"
-        //onChange={(e) => handleChange(e)}
-      />
+      <div className="sorts">
+        <label htmlFor="sortDate">
+          Sort by deadline:
+          <Button
+            id="sortDate"
+            className="button__sort"
+            onClick={() => {
+              handleOnClick(setDateOrder);
+            }}
+          >
+            {dateOrder}
+          </Button>
+        </label>
+        <label htmlFor="sortPrior">
+          Sort by priority:
+          <Button
+            id="sortPrior"
+            className="button__sort"
+            onClick={() => {
+              handleOnClick(setPriorOrder);
+            }}
+          >
+            {priorOrder}
+          </Button>
+        </label>
+      </div>
     </div>
   );
 };
