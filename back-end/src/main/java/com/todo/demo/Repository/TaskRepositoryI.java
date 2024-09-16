@@ -1,6 +1,7 @@
 package com.todo.demo.Repository;
 
 import com.todo.demo.Entity.Task;
+import com.todo.demo.Model.dto.TasksPageResultDTO;
 import com.todo.demo.Model.request.TaskRequest;
 
 import java.util.List;
@@ -12,6 +13,7 @@ public interface TaskRepositoryI {
     boolean updateDoneState(Long id);
     void save(Task task);
     void delete(Long id);
+    TasksPageResultDTO findByCriteriaPagination(TaskRequest taskRequest, int page, boolean isDateAsc, boolean isPriorAsc);
     List<Task> findByCriteria(TaskRequest taskRequest);
     void deleteAll();
     void saveAll(List<Task> taskList);
