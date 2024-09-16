@@ -1,6 +1,7 @@
 package com.todo.demo.Model.dto;
 
 import java.time.LocalDate;
+import java.time.OffsetDateTime;
 
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;
@@ -18,7 +19,7 @@ public class TaskDTO {
     @Size(max = 120, message = "Task is too long. Must be less than 120 characters")
     private String text;
     @FutureOrPresent(message = "Due date cannot be in the past")
-    private LocalDate dueDate;
+    private OffsetDateTime dueDate;
     @NotBlank(message = "Task priority is required!")
     private String priority;
 
