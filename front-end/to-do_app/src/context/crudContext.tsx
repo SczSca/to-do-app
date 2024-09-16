@@ -27,6 +27,8 @@ interface crudContextI {
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
   currentPage: number;
   data: TaskStructure[] | object;
+  dateOrder: order;
+  priorOrder: order;
   task: TaskElements;
   taskRequest: TaskRequest;
   timeMetrics: TaskTimes;
@@ -193,6 +195,8 @@ export const CrudProvider = ({ children }: ComponentWithChildren) => {
         setDateOrder,
         setCurrentPage,
         currentPage,
+        dateOrder,
+        priorOrder,
         task,
         taskRequest,
         data,
