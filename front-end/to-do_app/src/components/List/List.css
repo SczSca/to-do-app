@@ -1,7 +1,6 @@
 .list {
   display: flex;
   flex-direction: column;
-  border: 1px solid grey;
   width: 90%;
   height: 60%;
   align-items: center;
