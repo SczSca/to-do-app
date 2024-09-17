@@ -6,7 +6,7 @@ import { crudContext } from "../../context/crudContext";
 
 export const DeleteNote = () => {
   const { closeModal } = useContext(modalContext);
-  const { deleteTask, task, setTask } = useContext(crudContext);
+  const { deleteTask, task } = useContext(crudContext);
 
   return (
     <div className="delete__content">
