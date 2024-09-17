@@ -9,7 +9,7 @@ export const DeleteNote = () => {
   const { deleteTask, task } = useContext(crudContext);
 
   return (
-    <div className="delete__content">
+    <div className="delete__content" role="modal">
       <p>Are you sure you want to delete the task &quot;{task.text}&quot;?</p>
       <div className="delete__cancel">
         <Button
