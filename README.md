@@ -29,7 +29,7 @@ Installing dependencies used in project:
 ```bash
 npm install
 ```
-
+After installing, use this command to initialize app:
 ```bash
 npm run start
 ```
@@ -40,6 +40,8 @@ Installing dependencies used in project:
 ```bash
 yarn install
 ```
+After installing, use this command to initialize app:
+
 ```bash
 yarn start
 ```
