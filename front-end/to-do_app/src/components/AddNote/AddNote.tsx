@@ -64,9 +64,9 @@ export const AddNote = ({ isEdit }: Props) => {
     }
     closeModal();
   };
-  console.log(task.dueDate);
+
   return (
-    <div className="modal__content">
+    <div className="modal__content" role="modal">
       <form className="input__container" onSubmit={handleSubmit}>
         <TextBox
           id="nameTextBox"
