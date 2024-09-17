@@ -25,11 +25,21 @@ cd front-end/to-do_app/
 
 ##### Using npm
 
+Installing dependencies used in project:
+```bash
+npm install
+```
+
 ```bash
 npm run start
 ```
 ##### Using yarn
 
+
+Installing dependencies used in project:
+```bash
+yarn install
+```
 ```bash
 yarn start
 ```
