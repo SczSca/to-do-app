@@ -1,0 +1,25 @@
+.delete__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  background-color: #fefefe;
+  border: 1px solid #888;
+  width: 30%;
+  height: fit-content;
+  p {
+    padding: 1rem;
+    font-size: 1rem;
+  }
+}
+
+.delete__cancel {
+  display: flex;
+  height: 3rem;
+  align-items: center;
+  gap: 2.5rem;
+  > * {
+    height: 2rem;
+    width: 6rem;
+  }
+}

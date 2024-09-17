@@ -1,0 +1,80 @@
+.task {
+  display: flex;
+  width: 100%;
+  height: 10%;
+  border: 1px solid gray;
+  align-items: center;
+  gap: 1rem;
+  .task__name {
+    font-size: 1rem;
+  }
+}
+
+input[type="checkbox"] {
+  margin-left: 1rem;
+  height: fit-content;
+  width: fit-content;
+}
+
+.task__name {
+  width: 50%;
+}
+
+.task__info {
+  display: flex;
+  height: 60%;
+  width: 15%;
+  font-size: 0.8rem;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.2rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.task__date {
+  background-color: rgb(230, 228, 228);
+  color: rgb(117, 115, 115);
+}
+
+.task__priority {
+  width: 10%;
+  font-size: 1rem;
+}
+
+.due__soon {
+  background-color: #ff5f57b1;
+  color: #370e0c;
+}
+
+.due__soonish {
+  background-color: #fdbb2eb1;
+  color: #2f2002;
+}
+
+.due__later {
+  background-color: #27c842b1;
+  color: #034634;
+}
+
+.High {
+  background-color: #85231e;
+  color: whitesmoke;
+}
+
+.Medium {
+  background-color: #f1a208;
+  color: whitesmoke;
+}
+
+.Low {
+  background-color: #06a77d;
+  color: whitesmoke;
+}
+
+.actions {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  gap: 1rem;
+}

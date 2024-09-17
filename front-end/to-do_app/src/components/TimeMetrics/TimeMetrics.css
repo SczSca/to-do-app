@@ -1,0 +1,54 @@
+.modal__content__time {
+  display: grid;
+  grid-template-areas:
+    "close close close close close"
+    "avg avg . priority priority"
+    "avg avg . priority priority";
+  gap: 10px;
+  background-color: #fefefe;
+  border: 1px solid #888;
+  width: 50%;
+  height: fit-content;
+  > * {
+    display: flex;
+    height: 10rem;
+  }
+}
+.close {
+  grid-area: close;
+  display: flex;
+  position: relative;
+  height: 1.5rem;
+  width: 100%;
+  > .button__close {
+    position: absolute;
+    top: 0.2rem;
+    right: 0.2rem;
+  }
+}
+.average__time {
+  grid-area: avg;
+}
+
+.average {
+  display: flex;
+  flex-direction: column;
+  padding-top: 3rem;
+  padding-left: 1rem;
+  height: 100%;
+  gap: 0.5rem;
+}
+
+.average__time__priority {
+  grid-area: priority;
+}
+
+.priority {
+  display: flex;
+  flex-direction: column;
+  padding-top: 1.5rem;
+  padding-left: 1rem;
+  height: 100%;
+  width: 100%;
+  gap: 0.5rem;
+}
