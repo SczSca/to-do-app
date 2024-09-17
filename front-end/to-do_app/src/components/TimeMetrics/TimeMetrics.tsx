@@ -9,9 +9,8 @@ export const TimeMetrics = () => {
   const { timeMetrics } = useContext(crudContext);
   const { averageTime, lowPriorTime, mediumPriorTime, highPriorTime } =
     timeMetrics;
-  // const
   return (
-    <div className="modal__content__time">
+    <div className="modal__content__time" role="modal">
       <div className="close">
         <Button
           className="button__close button__gray"
