@@ -10,6 +10,9 @@ export default tseslint.config(
 
   {
     settings: { react: { version: "18.3" } },
+    env: {
+      "vitest-globals/env": true, // allows vitest
+    },
     extends: [
       js.configs.recommended,
       ...tseslint.configs.strictTypeChecked,
