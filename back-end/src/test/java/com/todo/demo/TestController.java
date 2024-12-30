@@ -36,12 +36,10 @@ public class TestController {
     private ObjectMapper objectMapper;
 
     @Autowired
-    private TaskRepository taskRepository;
-    Task newTask;
+    private LocalTaskRepository taskRepository;
 
     @Autowired
     private TaskService taskService;
-
 
     /**
      * Sets up the test data before each test.
