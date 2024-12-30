@@ -92,7 +92,7 @@ public class TestController {
      */
     @Test
     public void testCreateTask() throws Exception {
-        TaskDTO testTask = new TaskDTO();
+        TaskRequest testTask = new TaskRequest();
         testTask.setText("Test Task");
         testTask.setPriority("Medium");
         testTask.setDueDate(null);
