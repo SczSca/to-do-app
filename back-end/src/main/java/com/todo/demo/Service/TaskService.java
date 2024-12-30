@@ -38,14 +38,9 @@ public class TaskService {
         OffsetDateTime dueDate = taskRequest.getDueDate();
         Instant dueDateInstant = null;
 
-    public ResponseEntity<String> createTask(TaskDTO taskDto){
-        Task newTask = new Task();
-        newTask.setId(null);
-        newTask.setText(taskDto.getText());
-        newTask.setCreationDate(LocalDateTime.now());
-        newTask.setPriority(taskDto.getPriority());
-        newTask.setDueDate(taskDto.getDueDate());
-        newTask.setIsDone(false);
+        if(dueDate != null){
+            dueDateInstant = dueDate.toInstant();
+        }
 
         taskRepository.save(newTask);
         //return 201 created
