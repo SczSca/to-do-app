@@ -15,12 +15,27 @@ import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Service class for managing tasks.
+*/
 @Service
 //adds constructor that defines taskRepository
 @RequiredArgsConstructor
 public class TaskService {
 
-    private final TaskRepository taskRepository;
+    private final LocalTaskRepository taskRepository;
+
+    /**
+     * Creates a new task.
+     *
+     * @param taskRequest the task data transfer object containing task details
+     * @return a ResponseEntity with a success message and HTTP status code
+    */
+    public ResponseEntity<String> createTask(TaskRequest taskRequest){
+        String text = taskRequest.getText();
+        String priority = taskRequest.getPriority();
+        OffsetDateTime dueDate = taskRequest.getDueDate();
+        Instant dueDateInstant = null;
 
     public ResponseEntity<String> createTask(TaskDTO taskDto){
         Task newTask = new Task();
@@ -37,13 +52,26 @@ public class TaskService {
 
     }
 
+    /**
+     * Deletes a task by its ID.
+     *
+     * @param id the ID of the task to delete
+     * @return a ResponseEntity with a success message and HTTP status code
+    */
     public ResponseEntity<String> deleteTask(Long id){
         taskRepository.delete(id);
 
         return new ResponseEntity<>("task was deleted successfully!", HttpStatus.ACCEPTED);
     }
 
-    public ResponseEntity<String> updateTask(TaskDTO taskUpdate){
+    /**
+     * Updates an existing task.
+     *
+     * @param taskUpdate the task data transfer object containing updated task details
+     * @return a ResponseEntity with a success message and HTTP status code
+     * @throws ApiRequestException if the task with the given ID is not found
+    */
+    public ResponseEntity<String> updateTask(TaskRequest taskUpdate){
         Optional<Task> taskFound = taskRepository.findById(taskUpdate.getId());
         if(taskFound.isPresent()){
             Task task = taskFound.get();
@@ -60,6 +88,13 @@ public class TaskService {
 //        return new ResponseEntity<String>("task not found. Could not update!", HttpStatus.BAD_REQUEST);
     }
 
+    /**
+     * Updates the done status of a task by its ID.
+     *
+     * @param id the ID of the task to update
+     * @return a ResponseEntity with a success message and HTTP status code
+     * @throws ApiRequestException if the task with the given ID is not found
+    */
     public ResponseEntity<String> updateDoneStatus(Long id){
         boolean isUpdated = taskRepository.updateDoneState(id);
         if(isUpdated){
@@ -71,11 +106,22 @@ public class TaskService {
 //        return new ResponseEntity<String>("Done status was not updated, not found!", HttpStatus.BAD_REQUEST);
     }
 
-    public ResponseEntity<TasksPageResultDTO> getTasks(TaskRequest taskRequest, int page, boolean isDateAsc, boolean isPriorAsc){
-        TasksPageResultDTO paginationResponse = taskRepository.findByCriteriaPagination(taskRequest, page, isDateAsc, isPriorAsc);
+    /**
+     * Retrieves tasks based on the given criteria and pagination settings.
+     *
+     * @param taskSearchRequest the task request containing search criteria
+     * @return a ResponseEntity containing the paginated tasks and HTTP status code
+    */
+    public ResponseEntity<TasksPageResultDTO> getTasks(TaskSearchRequest taskSearchRequest){
+        TasksPageResultDTO paginationResponse = taskRepository.findByCriteriaPagination(taskSearchRequest);
         return new ResponseEntity<>(paginationResponse, HttpStatus.OK);
     }
 
+    /**
+     * Retrieves time metrics for tasks based on their priority levels.
+     *
+     * @return a ResponseEntity containing the time metrics for tasks
+     */
     public ResponseEntity<TimeDTO> getTimeMetrics(){
         TimeDTO time = new TimeDTO();
         List<Task> tasks = taskRepository.findByCriteria(new TaskRequest("","All","Completed"));
@@ -93,6 +139,12 @@ public class TaskService {
         return new ResponseEntity<TimeDTO>(time,HttpStatus.CREATED);
     }
 
+    /**
+     * Calculates the average time taken to complete tasks.
+     *
+     * @param tasks the list of tasks to calculate the average time for
+     * @return the average time in the format "HH:mm:ss"
+     */
     public String averageTime(List<Task> tasks){
         if(tasks.isEmpty()){
             return "00:00:00";
@@ -100,6 +152,7 @@ public class TaskService {
         long seconds = 0L;
         int amountTasks = tasks.size();
 
+        // Calculate the total seconds between creation and done dates for all tasks
         for(Task task: tasks){
             seconds += ChronoUnit.SECONDS.between(task.getCreationDate(), task.getDoneDate());
         }
@@ -109,6 +162,7 @@ public class TaskService {
         long minutes = (averageSeconds % 3600) / 60;
         seconds = averageSeconds % 60;
 
+        // Return the average time in "HH:mm:ss" format
         return String.format("%02d:%02d:%02d", hours, minutes, seconds);
     }
 
