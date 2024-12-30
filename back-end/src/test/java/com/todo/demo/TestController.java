@@ -52,13 +52,14 @@ public class TestController {
         String localDateTimeStr = LocalDate.now().plusDays(10).toString() + "T23:59:59Z";
         Instant dueDate = Instant.parse(localDateTimeStr);
 
-        newTask = new Task();
-        newTask.setId(1L);
-        newTask.setText("Test task");
-        newTask.setCreationDate(LocalDateTime.now());
-        newTask.setPriority("High");
-        newTask.setDueDate(dueDate);
-        newTask.setIsDone(false);
+        Task newTask = Task.builder()
+                .id(1L)
+                .text("Test task")
+                .creationDate(Instant.now())
+                .priority("High")
+                .dueDate(dueDate)
+                .isDone(false)
+                .build();
         taskRepository.save(newTask);
     }
 
@@ -67,7 +68,11 @@ public class TestController {
      */
     @Test
     public void testGetAllTasks() throws Exception {
-        TaskRequest taskRequest = new TaskRequest("Task test", "All", "All");
+        TaskDTO taskRequest = TaskDTO.builder()
+                .text("Test task")
+                .priority("All")
+                .status("All")
+                .build();
 
         // Perform GET request to retrieve tasks and verify the response
         mockMvc.perform(get("/api/v1/tasks/search")
