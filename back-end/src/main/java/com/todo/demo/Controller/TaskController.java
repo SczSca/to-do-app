@@ -37,8 +37,8 @@ public class TaskController {
     }
 
     @PostMapping
-    public ResponseEntity<String> createTask(@Valid @RequestBody TaskDTO taskDTO){
-        return taskService.createTask(taskDTO);
+    public ResponseEntity<String> createTask(@Valid @RequestBody TaskRequest taskRequest){
+        return taskService.createTask(taskRequest);
     }
 
     @DeleteMapping("/{id}")
@@ -47,7 +47,7 @@ public class TaskController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<String> updateTask(@Valid @RequestBody TaskDTO taskUpdate){
+    public ResponseEntity<String> updateTask(@Valid @RequestBody TaskRequest taskUpdate){
         return taskService.updateTask(taskUpdate);
     }
 
