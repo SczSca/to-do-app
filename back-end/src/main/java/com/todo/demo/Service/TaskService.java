@@ -98,9 +98,9 @@ public class TaskService {
 
         if(taskFound.isPresent()){
             Task task = taskFound.get();
-            task.setText(taskUpdate.getText());
-            task.setPriority(taskUpdate.getPriority());
-            task.setDueDate(taskUpdate.getDueDate());
+            task.setText(text);
+            task.setPriority(priority);
+            task.setDueDate(dueDateInstant);
 
             taskRepository.save(task);
             return new ResponseEntity<String>("task was updated successfully!", HttpStatus.ACCEPTED);
