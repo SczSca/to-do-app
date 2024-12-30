@@ -68,9 +68,13 @@ public class TaskService {
      * @return a ResponseEntity with a success message and HTTP status code
     */
     public ResponseEntity<String> deleteTask(Long id){
-        taskRepository.delete(id);
+        if(taskRepository.delete(id)){
+            return new ResponseEntity<>("task was deleted successfully!", HttpStatus.ACCEPTED);
+        }
+        throw new ApiRequestException(
+                String.format("task with id: %d not found. Could not delete!",id)
+        );
 
-        return new ResponseEntity<>("task was deleted successfully!", HttpStatus.ACCEPTED);
     }
 
     /**
