@@ -83,8 +83,8 @@ public class TestController {
                         .param("dateOrder", "Asc")
                         .param("priorOrder", "Asc")
                         .contentType(MediaType.APPLICATION_JSON))
-        .andExpect(status().isOk())
-        .andExpect(jsonPath("$.size()", is(3)));
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.tasksFromPage.size()", is(1))); // Check the size of tasksFromPage
     }
 
     /**
