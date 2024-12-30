@@ -23,6 +23,9 @@ import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+/**
+ * TestController class to test the TaskController endpoints.
+ */
 @SpringBootTest(classes = DemoApplication.class)
 @AutoConfigureMockMvc
 //@WebMvcTest(TaskController.class)
@@ -42,14 +45,17 @@ public class TestController {
     private TaskService taskService;
 
 
+    /**
+     * Sets up the test data before each test.
+     */
     @BeforeEach
     public void setUp() {
-        //didnt know how to make this work and interact with the mock.perform
+        // Clear the repository to ensure a clean state for each test
         taskRepository.deleteAll();
 
-        String LocalDateTimeStr = LocalDate.now().plusDays(10).toString() + "T23:59:59Z";
-        OffsetDateTime dueDate = OffsetDateTime.parse(LocalDateTimeStr);
-        System.out.println(dueDate);
+        // Create a new task with a due date 10 days from now
+        String localDateTimeStr = LocalDate.now().plusDays(10).toString() + "T23:59:59Z";
+        Instant dueDate = Instant.parse(localDateTimeStr);
 
         newTask = new Task();
         newTask.setId(1L);
@@ -61,17 +67,24 @@ public class TestController {
         taskRepository.save(newTask);
     }
 
+    /**
+     * Tests the retrieval of all tasks.
+     */
     @Test
     public void testGetAllTasks() throws Exception {
         TaskRequest taskRequest = new TaskRequest("Task test", "All", "All");
 
 
         mockMvc.perform(get("/api/tasks/search/prior/{prior}/status/{status}/text/{text}/page/{page}/dateAsc/{isDateAsc}/priorAsc/{isPriorAsc}", taskRequest.getPriority(),taskRequest.getStatus(),taskRequest.getText(),"1", "Asc", "Asc")
+        // Perform GET request to retrieve tasks and verify the response
                         .contentType(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk())
         .andExpect(jsonPath("$.size()", is(3)));
     }
 
+    /**
+     * Tests the creation of a new task.
+     */
     @Test
     public void testCreateTask() throws Exception {
         TaskDTO testTask = new TaskDTO();
@@ -80,6 +93,7 @@ public class TestController {
         testTask.setDueDate(null);
 
         mockMvc.perform(post("/api/tasks")
+        // Perform POST request to create a new task and verify the response
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(testTask)))
                 .andExpect(status().isCreated())
@@ -103,5 +117,14 @@ public class TestController {
 //                .andExpect(status().isOk())
 //                .andExpect(content().string("To Do updated successfully"));
 //    }
+    /**
+     * Tests the update of an existing task.
+     */
 
+        // Perform PUT request to update the task and verify the response
+
+    /**
+     * Tests the deletion of a task.
+     */
+        // Perform DELETE request to delete the task and verify the response
 }
