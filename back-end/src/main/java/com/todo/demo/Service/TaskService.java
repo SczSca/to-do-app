@@ -86,6 +86,16 @@ public class TaskService {
     */
     public ResponseEntity<String> updateTask(TaskRequest taskUpdate){
         Optional<Task> taskFound = taskRepository.findById(taskUpdate.getId());
+
+        String text = taskUpdate.getText();
+        String priority = taskUpdate.getPriority();
+        OffsetDateTime dueDate = taskUpdate.getDueDate();
+        Instant dueDateInstant = null;
+
+        if(dueDate != null){
+            dueDateInstant = dueDate.toInstant();
+        }
+
         if(taskFound.isPresent()){
             Task task = taskFound.get();
             task.setText(taskUpdate.getText());
