@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.todo.demo.Entity.Task;
 import com.todo.demo.Model.dto.TaskDTO;
 import com.todo.demo.Model.request.TaskRequest;
-import com.todo.demo.Repository.TaskRepository;
+import com.todo.demo.Repository.LocalTaskRepository;
 import com.todo.demo.Service.TaskService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,6 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
