@@ -1,25 +1,24 @@
 package com.todo.demo.Entity;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.OffsetDateTime;
-
+import java.time.Instant;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.Builder;
 
 @Getter
 @Setter
-@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Task {
 
     private Long id;
     private String text;
-    private OffsetDateTime dueDate;
+    private Instant dueDate;
     private Boolean isDone;
-    private LocalDateTime doneDate;
+    private Instant doneDate;
     private String priority;
-    private LocalDateTime creationDate;
+    private Instant creationDate;
 
     @Override
     public String toString() {
