@@ -52,7 +52,7 @@ public class TaskController {
         return taskService.updateTask(taskUpdate);
     }
 
-    @PatchMapping("/{id}/change-status")
+    @PatchMapping("/{id}/status")
     public ResponseEntity<String> updateDoneStatus(@Valid @PathVariable("id") Long id){
         return taskService.updateDoneStatus(id);
     }
