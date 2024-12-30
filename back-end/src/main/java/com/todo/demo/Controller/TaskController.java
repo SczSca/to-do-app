@@ -19,13 +19,16 @@ import org.springframework.web.bind.annotation.*;
 public class TaskController {
     private final TaskService taskService;
 
-    @GetMapping("/search/prior/{prior}/status/{status}/text/{text}/page/{page}/dateAsc/{isDateAsc}/priorAsc/{isPriorAsc}")
-    public ResponseEntity<TasksPageResultDTO> getTasks(@Valid @PathVariable("prior") String prior, @PathVariable("status") String status, @PathVariable("text") String text, @PathVariable("page") int page, @PathVariable("isDateAsc") String isDateAsc, @PathVariable("isPriorAsc") String isPriorAsc){
-        boolean isDateAscFlag = isDateAsc.equals("Asc");
-        boolean isPriorAscFlag = isPriorAsc.equals("Asc");
-        text = text.equals("blankTask_0X0") ? "" : text;
-        TaskRequest taskRequest = new TaskRequest(text, prior, status);
-        return taskService.getTasks(taskRequest, page, isDateAscFlag, isPriorAscFlag);
+    @GetMapping("/search")
+    public ResponseEntity<TasksPageResultDTO> getTasks(
+            @Valid TaskSearchRequest taskSearchRequest){
+        taskSearchRequest.setDateAsc(taskSearchRequest.getDateOrder().equals("Asc"));
+        taskSearchRequest.setPriorAsc(taskSearchRequest.getPriorOrder().equals("Asc"));
+
+        if(taskSearchRequest.getText().equals("blankTask_0X0")){
+            taskSearchRequest.setText("");
+        }
+        return taskService.getTasks(taskSearchRequest);
     }
 
     @GetMapping("/time")
