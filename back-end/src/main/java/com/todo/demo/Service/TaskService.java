@@ -42,9 +42,22 @@ public class TaskService {
             dueDateInstant = dueDate.toInstant();
         }
 
-        taskRepository.save(newTask);
-        //return 201 created
-        return new ResponseEntity<>("task created successfully!", HttpStatus.CREATED);
+        Task newTask = Task.builder()
+                .id(null)
+                .text(text)
+                .creationDate(Instant.now())
+                .priority(priority)
+                .dueDate(dueDateInstant)
+                .isDone(false)
+                .build();
+
+        if(taskRepository.save(newTask)){
+            //return 201 created
+            return new ResponseEntity<>("task created successfully!", HttpStatus.CREATED);
+        }
+        throw new ApiRequestException(
+                String.format("task with text: %s could not be created!",text)
+        );
 
     }
 
