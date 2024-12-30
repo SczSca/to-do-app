@@ -106,7 +106,7 @@ public class TaskService {
             return new ResponseEntity<String>("task was updated successfully!", HttpStatus.ACCEPTED);
         }
         throw new ApiRequestException(
-                String.format("task with id: %02d not found. Could not update!",taskUpdate.getId())
+                String.format("task with id: %d not found. Could not update!",taskUpdate.getId())
         );
 //        return new ResponseEntity<String>("task not found. Could not update!", HttpStatus.BAD_REQUEST);
     }
@@ -124,7 +124,7 @@ public class TaskService {
             return new ResponseEntity<String>("Done status updated successfully!", HttpStatus.ACCEPTED);
         }
         throw new ApiRequestException(
-                String.format("task with id: %02d not found. Could not update!",id)
+                String.format("task with id: %d not found. Could not update!",id)
         );
 //        return new ResponseEntity<String>("Done status was not updated, not found!", HttpStatus.BAD_REQUEST);
     }
