@@ -11,7 +11,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import java.time.LocalDateTime;
+
+import java.time.Instant;
+import java.time.OffsetDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Optional;
@@ -191,6 +193,7 @@ public class TaskService {
      * @return the average time in the format "HH:mm:ss"
      */
     public String averageTime(List<Task> tasks){
+        // Return "00:00:00" if the task list is empty
         if(tasks.isEmpty()){
             return "00:00:00";
         }
