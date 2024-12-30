@@ -147,16 +147,38 @@ public class TaskService {
      */
     public ResponseEntity<TimeDTO> getTimeMetrics(){
         TimeDTO time = new TimeDTO();
-        List<Task> tasks = taskRepository.findByCriteria(new TaskRequest("","All","Completed"));
+        TaskDTO allCompletedFilter = TaskDTO.builder()
+                .text("")
+                .priority("All")
+                .status("Completed")
+                .build();
+        TaskDTO lowCompletedFilter = TaskDTO.builder()
+                .text("")
+                .priority("Low")
+                .status("Completed")
+                .build();
+        TaskDTO mediumCompletedFilter = TaskDTO.builder()
+                .text("")
+                .priority("Medium")
+                .status("Completed")
+                .build();
+        TaskDTO highCompletedFilter = TaskDTO.builder()
+                .text("")
+                .priority("High")
+                .status("Completed")
+                .build();
+
+
+        List<Task> tasks = taskRepository.findByCriteria(allCompletedFilter);
         time.setAverageTime(averageTime(tasks));
 
-        List<Task> lowPriorTasks = taskRepository.findByCriteria(new TaskRequest("", "Low", "Completed"));
+        List<Task> lowPriorTasks = taskRepository.findByCriteria(lowCompletedFilter);
         time.setLowPriorTime(averageTime(lowPriorTasks));
 
-        List<Task> mediumPriorTasks = taskRepository.findByCriteria(new TaskRequest("", "Medium", "Completed"));
+        List<Task> mediumPriorTasks = taskRepository.findByCriteria(mediumCompletedFilter);
         time.setMediumPriorTime(averageTime(mediumPriorTasks));
 
-        List<Task> highPriorTasks = taskRepository.findByCriteria(new TaskRequest("", "High", "Completed"));
+        List<Task> highPriorTasks = taskRepository.findByCriteria(highCompletedFilter);
         time.setHighPriorTime(averageTime(highPriorTasks));
 
         return new ResponseEntity<TimeDTO>(time,HttpStatus.CREATED);
