@@ -6,6 +6,7 @@ import com.todo.demo.Model.dto.TaskDTO;
 import com.todo.demo.Model.dto.TasksPageResultDTO;
 import com.todo.demo.Model.dto.TimeDTO;
 import com.todo.demo.Model.request.TaskRequest;
+import com.todo.demo.Model.request.TaskSearchRequest;
 import com.todo.demo.Service.TaskService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
