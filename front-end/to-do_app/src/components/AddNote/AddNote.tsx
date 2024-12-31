@@ -7,18 +7,31 @@ import { priorityOptions } from "../../utils";
 import { modalContext } from "../../context/modalContext";
 import { TaskElements } from "../../types";
 import { crudContext } from "../../context/crudContext";
+import {
+  createTaskAndFetchAll,
+  updateTaskAndFetchAll,
+} from "../../service/ApiService";
 
 interface Props {
   isEdit?: boolean;
 }
 
+//This component is used to add a new task or edit an existing task
 export const AddNote = ({ isEdit }: Props) => {
   const [error, setError] = useState("");
   const { closeModal } = useContext(modalContext);
-  const { createTask, updateTask, task, setTask } = useContext(crudContext);
+  const { searchParams, setSearchParams, allData, setAllData } =
+    useContext(crudContext);
 
   //remove all option
   const priorityOpts = priorityOptions.slice(1);
+
+  const setTask = (item: TaskElements) => {
+    setAllData((prevData) => ({
+      ...prevData,
+      task: item,
+    }));
+  };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -35,15 +48,22 @@ export const AddNote = ({ isEdit }: Props) => {
     const dateVal = taskDateInput.value;
     const textVal = taskTextInput.value;
 
+    // Check if the task description length is valid.
     if (textVal.length > 120) {
       taskTextInput.value = "";
-      setError("Task's text must be less than 120 chars.");
+      setError(
+        "Please enter a task description with less than 120 characters."
+      );
       setTimeout(() => {
         setError("");
       }, 5000);
       return Promise;
-    } else if (textVal.trim() == "") {
-      setError("There must be a task text");
+    }
+    // Check if the task description is empty.
+    else if (textVal.trim() == "") {
+      setError(
+        "Task description cannot be empty. Please provide a task description."
+      );
       setTimeout(() => {
         setError("");
       }, 5000);
@@ -61,10 +81,21 @@ export const AddNote = ({ isEdit }: Props) => {
       formData.dueDate = new Date(`${dateVal}T23:59:59Z`).toISOString();
     }
 
+    // if the modal is type edit, update the task. Otherwise, create a new task
     if (isEdit) {
-      await updateTask(formData);
+      updateTaskAndFetchAll(
+        formData,
+        searchParams,
+        setAllData,
+        setSearchParams
+      );
     } else {
-      await createTask(formData);
+      createTaskAndFetchAll(
+        formData,
+        searchParams,
+        setAllData,
+        setSearchParams
+      );
     }
     closeModal();
   };
@@ -77,17 +108,20 @@ export const AddNote = ({ isEdit }: Props) => {
           name="text"
           label="Name:"
           type="text"
-          placeholder="Introduce task name"
-          defaultValue={task.text ?? ""}
+          placeholder="Enter new task name"
+          defaultValue={allData.task.text ?? ""}
         />
-        {error && <p style={{ color: "red" }}>{error}</p>}
+        {error && (
+          <p style={{ color: "red", margin: "0", gap: "0" }}>{error}</p>
+        )}
         <TextBox
           id="dueDate"
           name="dueDate"
           label="Deadline:"
           type="date"
-          // For some reason, this works fine, but is marked as an error in code
-          defaultValue={task.dueDate ? task.dueDate.split("T")[0] : ""}
+          defaultValue={
+            allData.task.dueDate ? allData.task.dueDate.split("T")[0] : ""
+          }
           min={new Date().toISOString().split("T")[0]}
         />
         <Select
@@ -95,7 +129,7 @@ export const AddNote = ({ isEdit }: Props) => {
           id="priority"
           name="priority"
           label="Priority:"
-          defaultValue={task.priority ?? ""}
+          defaultValue={allData.task.priority ?? ""}
         />
         <div className="buttons__container">
           <Button className="button__modal button__blue" type="submit">
