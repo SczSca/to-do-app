@@ -16,6 +16,20 @@ export enum ModalType {
   Null = "",
 }
 
+export interface AllData {
+  data: TaskStructure[];
+  task: TaskElements;
+  timeMetrics: TaskTimes;
+}
+
+export interface SearchParams {
+  currentPage: number;
+  totalPages: number;
+  priorOrder: order;
+  dateOrder: order;
+  taskRequest: TaskRequest;
+}
+
 export interface TaskElements {
   id?: number;
   text?: string;
