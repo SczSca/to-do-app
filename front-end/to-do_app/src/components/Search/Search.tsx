@@ -8,13 +8,14 @@ import { TaskRequest } from "../../types";
 import { crudContext } from "../../context/crudContext";
 
 export const Search = () => {
-  const { getData, setTaskRequest, taskRequest } = useContext(crudContext);
+  const { setSearchParams } = useContext(crudContext);
 
-  // getData will be called after taskRequest is set on handleSubmit
-  useEffect(() => {
-    getData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [taskRequest]);
+  const setTaskRequest = (taskRequest: TaskRequest) => {
+    setSearchParams((prevState) => ({
+      ...prevState,
+      taskRequest: taskRequest,
+    }));
+  };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
