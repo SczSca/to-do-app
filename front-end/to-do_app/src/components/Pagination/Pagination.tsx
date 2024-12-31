@@ -15,7 +15,6 @@ export const Pagination = ({
   siblingCount = 1,
   currentPage,
 }: Props) => {
-  
   const paginationRange = usePagination({
     currentPage,
     totalPages,
@@ -23,7 +22,7 @@ export const Pagination = ({
   });
 
   // no render if there is no pages
-  if (!paginationRange) {
+  if (paginationRange.length == 0) {
     return null;
   }
 
