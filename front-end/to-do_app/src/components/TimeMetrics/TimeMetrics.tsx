@@ -6,9 +6,9 @@ import { crudContext } from "../../context/crudContext";
 
 export const TimeMetrics = () => {
   const { closeModal } = useContext(modalContext);
-  const { timeMetrics } = useContext(crudContext);
+  const { allData } = useContext(crudContext);
   const { averageTime, lowPriorTime, mediumPriorTime, highPriorTime } =
-    timeMetrics;
+    allData.timeMetrics;
   return (
     <div className="modal__content__time" role="modal">
       <div className="close">
