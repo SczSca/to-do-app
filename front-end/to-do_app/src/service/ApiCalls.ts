@@ -1,4 +1,3 @@
-//I want to create a bodyType of this Record<string, string | number | null | Date | undefined>,
 type bodyType = Record<string, string | number | null | Date | undefined>;
 
 export const secureFetch = (backendUrl = "", defaultHeaders = {}) => {
