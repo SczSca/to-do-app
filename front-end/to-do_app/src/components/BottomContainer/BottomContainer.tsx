@@ -4,9 +4,10 @@ import "./BottomContainer.css";
 import { modalContext } from "../../context/modalContext";
 import { ModalType } from "../../types";
 import { crudContext } from "../../context/crudContext";
+import { fetchMetrics } from "../../service/ApiService";
 export const BottomContainer = () => {
   const { openModal } = useContext(modalContext);
-  const { getTimeMetrics } = useContext(crudContext);
+  const { setAllData } = useContext(crudContext);
 
   const { Add, Time } = ModalType;
   return (
@@ -15,7 +16,7 @@ export const BottomContainer = () => {
         <Button
           className="button__open__modal button__black"
           onClick={() => {
-            void getTimeMetrics();
+            fetchMetrics(setAllData);
             openModal(Time);
           }}
         >
