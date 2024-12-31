@@ -4,7 +4,7 @@ import "./Task.css";
 import { ModalType, TaskStructure } from "../../types";
 import { modalContext } from "../../context/modalContext";
 import { Button } from "../Button/Button";
-
+import { patchStatusTask } from "../../service/ApiService";
 
 interface Props {
   item: TaskStructure;
@@ -12,19 +12,26 @@ interface Props {
 export const Task = ({ item }: Props) => {
   const [isChecked, setIsChecked] = useState(item.isDone);
 
-  const { setTask, updateStatusTask } = useContext(crudContext);
+  const { setAllData } = useContext(crudContext);
   const { openModal } = useContext(modalContext);
 
   const { Edit, Delete } = ModalType;
 
+  const setTask = () => {
+    setAllData((prevData) => ({
+      ...prevData,
+      task: item,
+    }));
+  };
+
   const handleOnClicked = (modal: ModalType.Edit | ModalType.Delete) => {
     openModal(modal);
-    setTask(item);
+    setTask();
   };
 
   const handleOnChange = async (id: number) => {
     setIsChecked((prevChecked) => !prevChecked);
-    await updateStatusTask(id);
+    patchStatusTask(id);
   };
 
   const handleDateStyle = () => {
