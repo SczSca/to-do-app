@@ -17,6 +17,9 @@ export const Task = ({ item }: Props) => {
 
   const { Edit, Delete } = ModalType;
 
+  /**
+   * Updates the task in the state with the current item.
+   */
   const setTask = () => {
     setAllData((prevData) => ({
       ...prevData,
@@ -24,35 +27,61 @@ export const Task = ({ item }: Props) => {
     }));
   };
 
+  /**
+   * Handles the click event to open a modal and set the current task.
+   *
+   * @param {ModalType.Edit | ModalType.Delete} modal - The type of modal to open.
+   */
   const handleOnClicked = (modal: ModalType.Edit | ModalType.Delete) => {
-    openModal(modal);
-    setTask();
+    openModal(modal); // Open the specified modal
+    setTask(); // Set the current task in the state
   };
 
+  /**
+   * Handles the change event for the task status checkbox.
+   *
+   * @param {number} id - The ID of the task to update.
+   */
   const handleOnChange = async (id: number) => {
-    setIsChecked((prevChecked) => !prevChecked);
-    patchStatusTask(id);
+    setIsChecked((prevChecked) => !prevChecked); // Toggle the checked state
+    await patchStatusTask(id); // Update the task status on the server
   };
 
+  /**
+   * Determines the CSS class for the task's due date based on how soon it is.
+   *
+   * @returns {string} The CSS class indicating the urgency of the due date.
+   */
   const handleDateStyle = () => {
+    // If there is no due date, return an empty string
     if (!item.dueDate) {
       return "";
     }
+
+    // Base class for due date styling
     let dateStyle = "due";
+
+    // Get the current date
     const actualDate: Date = new Date();
+
+    // Calculate the difference in milliseconds between the due date and the current date
     const dateComparison: number =
       new Date(item.dueDate).getTime() - actualDate.getTime();
+
+    // Convert the difference from milliseconds to days
     const dateComparisonDays: number = Math.ceil(
       dateComparison / (1000 * 3600 * 24)
     );
 
+    // Determine the appropriate CSS class based on the number of days until the due date
     if (dateComparisonDays <= 7) {
-      dateStyle += "__soon";
+      dateStyle += "__soon"; // Due within a week
     } else if (dateComparisonDays <= 14) {
-      dateStyle += "__soonish";
+      dateStyle += "__soonish"; // Due within two weeks
     } else {
-      dateStyle += "__later";
+      dateStyle += "__later"; // Due in more than two weeks
     }
+
     return dateStyle;
   };
   const dateStyle = handleDateStyle();
