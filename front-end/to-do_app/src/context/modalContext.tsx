@@ -1,8 +1,6 @@
 import { createContext, useState } from "react";
 import { ComponentWithChildren, ModalType } from "../types";
 
-//TODO cambiar el tipado para la aceptacion de param para identificar con que modal se interactua
-
 interface ModalContextI {
   openModal: (type: ModalType) => void;
   closeModal: () => void;
