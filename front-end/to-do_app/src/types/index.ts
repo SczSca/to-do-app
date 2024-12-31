@@ -34,7 +34,7 @@ export interface TaskElements {
   id?: number;
   text?: string;
   priority?: string;
-  dueDate?: Date;
+  dueDate?: string;
 }
 
 export enum priorityType {
