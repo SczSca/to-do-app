@@ -20,7 +20,7 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
 
-    "types": ["vitest/globals", "@vitest/browser/matchers"]
+    "types": ["vitest/globals"]
   },
   "include": ["src", "setupTests.tsx"]
 }
