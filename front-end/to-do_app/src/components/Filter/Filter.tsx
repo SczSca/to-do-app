@@ -5,24 +5,24 @@ import { Button } from "../Button/Button";
 import { order, SearchParams } from "../../types";
 
 export const Filter = () => {
-  const { getData, setDateOrder, setPriorOrder, priorOrder, dateOrder } =
-    useContext(crudContext);
-  const isFirstRender = useRef(true); // Track if it's the first render
-
-  useEffect(() => {
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-      return;
-    }
-
-    getData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [priorOrder, dateOrder]);
+  const { setSearchParams, searchParams } = useContext(crudContext);
   const handleOnClick = (
-    setFunc: React.Dispatch<React.SetStateAction<order>>
+    setFunc: React.Dispatch<React.SetStateAction<SearchParams>>,
+    type: number
   ) => {
-    setFunc((prevOrder) => (prevOrder === order.Asc ? order.Desc : order.Asc));
+    if (type == 1) {
+      setFunc((prevState) => ({
+        ...prevState, // Spread the previous state to keep other fields unchanged
+        priorOrder: prevState.priorOrder === order.Asc ? order.Desc : order.Asc, // Toggle the value
+      }));
+    } else if (type == 2) {
+      setFunc((prevState) => ({
+        ...prevState, // Spread the previous state to keep other fields unchanged
+        dateOrder: prevState.dateOrder === order.Asc ? order.Desc : order.Asc, // Toggle the value
+      }));
+    }
   };
+
   return (
     <div className="filter__pagination__modal">
       <div className="sorts">
@@ -32,10 +32,10 @@ export const Filter = () => {
             id="sortDate"
             className="button__sort"
             onClick={() => {
-              handleOnClick(setDateOrder);
+              handleOnClick(setSearchParams, 2);
             }}
           >
-            {dateOrder}
+            {searchParams.dateOrder}
           </Button>
         </label>
         <label htmlFor="sortPrior">
@@ -44,10 +44,10 @@ export const Filter = () => {
             id="sortPrior"
             className="button__sort"
             onClick={() => {
-              handleOnClick(setPriorOrder);
+              handleOnClick(setSearchParams, 1);
             }}
           >
-            {priorOrder}
+            {searchParams.priorOrder}
           </Button>
         </label>
       </div>
