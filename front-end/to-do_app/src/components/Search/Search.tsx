@@ -27,7 +27,7 @@ export const Search = () => {
     //Set value used in backend to let it know it is blank
     formData.taskText = text == "" ? "blankTask_0X0" : text;
 
-    //now the task info requested will be saved on taskRequest in crudContext
+    //now the task info requested will be saved on taskRequest in crudContext to be able to go through the pages and keep the search
     setTaskRequest(formData);
 
     // direct access to textInput to erase value
@@ -46,8 +46,7 @@ export const Search = () => {
           name="taskText"
           label="Name:"
           type="text"
-          //onChange={(e) => handleChange(e)}
-          placeholder="Introduce task name"
+          placeholder="Enter task name to search"
         />
         <div className="selectNbtn">
           <Select
@@ -55,14 +54,12 @@ export const Search = () => {
             id="priority"
             name="priority"
             label="Priority:"
-            //onChange={(e) => handleChange(e)}
           />
           <Select
             options={statusOptions}
             id="status"
             name="status"
             label="State:"
-            //onChange={(e) => handleChange(e)}
           />
           <Button className="button" type="submit">
             Search
