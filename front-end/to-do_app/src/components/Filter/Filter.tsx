@@ -1,8 +1,8 @@
-import { useContext, useEffect, useRef } from "react";
+import { useContext } from "react";
 import "./Filter.css";
 import { crudContext } from "../../context/crudContext";
 import { Button } from "../Button/Button";
-import { order } from "../../types";
+import { order, SearchParams } from "../../types";
 
 export const Filter = () => {
   const { getData, setDateOrder, setPriorOrder, priorOrder, dateOrder } =
