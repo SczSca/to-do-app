@@ -3,9 +3,9 @@ import "./Pagination.css";
 
 interface Props {
   onPageChange: (page: number) => void;
-  totalPages: number; // maybe switch to a useState val stored in crudContext
+  totalPages: number;
   siblingCount?: number;
-  currentPage: number; // maybe switch to a useState val stored in crudContext
+  currentPage: number;
   className?: string;
 }
 
@@ -15,10 +15,10 @@ export const Pagination = ({
   siblingCount = 1,
   currentPage,
 }: Props) => {
-  // llamada 10
+  
   const paginationRange = usePagination({
     currentPage,
-    totalPages, // Ya no necesitas totalCount y pageSize exactos
+    totalPages,
     siblingCount,
   });
 
