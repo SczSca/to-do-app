@@ -10,7 +10,6 @@ import {
   SearchParams,
 } from "../types";
 
-//TODO: ADJUST TYPE
 interface crudContextI {
   setSearchParams: React.Dispatch<React.SetStateAction<SearchParams>>;
   setAllData: React.Dispatch<React.SetStateAction<AllData>>;

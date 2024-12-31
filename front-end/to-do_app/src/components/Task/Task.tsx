@@ -5,12 +5,6 @@ import { ModalType, TaskStructure } from "../../types";
 import { modalContext } from "../../context/modalContext";
 import { Button } from "../Button/Button";
 
-/**
- * TODO:
- *  add functionality
- *  add interaction with pagination
- *  try not to die in the process
- */
 
 interface Props {
   item: TaskStructure;
