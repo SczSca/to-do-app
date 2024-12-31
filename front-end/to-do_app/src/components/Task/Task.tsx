@@ -88,7 +88,6 @@ export const Task = ({ item }: Props) => {
           }}
         >
           Edit
-          {/* <img src="../../assets/edit.png" alt="" srcSet="" /> */}
         </Button>
         <Button
           className="button__actions button__red"
@@ -97,7 +96,6 @@ export const Task = ({ item }: Props) => {
           }}
         >
           Delete
-          {/* <img src="../../assets/edit.png" alt="" srcSet="" /> */}
         </Button>
       </div>
     </div>
