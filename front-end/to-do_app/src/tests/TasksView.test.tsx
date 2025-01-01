@@ -10,11 +10,11 @@ interface Props {
   dataParam: TaskStructure[];
 }
 const TestTasks = ({ dataParam }: Props) => {
-  const { setData } = useContext(crudContext);
+  const { setAllData } = useContext(crudContext);
 
   // Usa useEffect para actualizar el estado después de la primera renderización
   useEffect(() => {
-    setData(dataParam);
+    setAllData((prevState) => ({ ...prevState, data: dataParam }));
   }, [dataParam]);
 
   return <TasksView />;
