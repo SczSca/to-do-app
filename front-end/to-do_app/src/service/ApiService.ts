@@ -13,7 +13,6 @@ const headers = {
   Accept: "application/json",
 };
 const api = secureFetch(env.backendUrl, headers);
-
 /**
  * Creates a new task.
  *
