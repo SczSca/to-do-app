@@ -63,3 +63,10 @@ export const orderOptions: SelectOptionsI[] = [
     value: "Status Asc",
   },
 ];
+
+export const errorMessages = {
+  emptyTaskText:
+    "Task description cannot be empty. Please provide a task description.",
+  taskTextLength:
+    "Please enter a task description with less than 120 characters.",
+};

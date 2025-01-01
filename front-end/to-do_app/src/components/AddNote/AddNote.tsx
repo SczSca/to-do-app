@@ -3,7 +3,7 @@ import "./AddNote.css";
 import { TextBox } from "../TextBox/TextBox";
 import { Button } from "../Button/Button";
 import Select from "../Select/Select";
-import { priorityOptions } from "../../utils";
+import { errorMessages, priorityOptions } from "../../utils";
 import { modalContext } from "../../context/modalContext";
 import { TaskElements } from "../../types";
 import { crudContext } from "../../context/crudContext";
@@ -51,9 +51,7 @@ export const AddNote = ({ isEdit }: Props) => {
     // Check if the task description length is valid.
     if (textVal.length > 120) {
       taskTextInput.value = "";
-      setError(
-        "Please enter a task description with less than 120 characters."
-      );
+      setError(errorMessages.taskTextLength);
       setTimeout(() => {
         setError("");
       }, 5000);
@@ -61,9 +59,7 @@ export const AddNote = ({ isEdit }: Props) => {
     }
     // Check if the task description is empty.
     else if (textVal.trim() == "") {
-      setError(
-        "Task description cannot be empty. Please provide a task description."
-      );
+      setError(errorMessages.emptyTaskText);
       setTimeout(() => {
         setError("");
       }, 5000);
@@ -111,9 +107,7 @@ export const AddNote = ({ isEdit }: Props) => {
           placeholder="Enter new task name"
           defaultValue={allData.task.text ?? ""}
         />
-        {error && (
-          <p style={{ color: "red", margin: "0", gap: "0" }}>{error}</p>
-        )}
+        {error && <p style={{ color: "red", margin: "0" }}>{error}</p>}
         <TextBox
           id="dueDate"
           name="dueDate"
