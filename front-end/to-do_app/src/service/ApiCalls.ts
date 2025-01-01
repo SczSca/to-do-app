@@ -1,6 +1,6 @@
 type bodyType = Record<string, string | number | null | Date | undefined>;
 
-export const secureFetch = (backendUrl = "", defaultHeaders = {}) => {
+export const secureFetch = (baseUrl = "", defaultHeaders = {}) => {
   const buildQueryParams = (
     params: Record<string, string | number | boolean | null | undefined>
   ) => {
@@ -20,7 +20,7 @@ export const secureFetch = (backendUrl = "", defaultHeaders = {}) => {
     queryParams = {}
   ) => {
     const queryString = buildQueryParams(queryParams);
-    const response = await fetch(`${backendUrl}${endpoint}${queryString}`, {
+    const response = await fetch(`${baseUrl}${endpoint}${queryString}`, {
       method: "GET",
       headers: { ...defaultHeaders, ...headers },
     });
@@ -34,7 +34,7 @@ export const secureFetch = (backendUrl = "", defaultHeaders = {}) => {
     queryParams = {}
   ) => {
     const queryString = buildQueryParams(queryParams);
-    return await fetch(`${backendUrl}${endpoint}${queryString}`, {
+    return await fetch(`${baseUrl}${endpoint}${queryString}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -51,7 +51,7 @@ export const secureFetch = (backendUrl = "", defaultHeaders = {}) => {
     queryParams = {}
   ) => {
     const queryString = buildQueryParams(queryParams);
-    return fetch(`${backendUrl}${endpoint}${queryString}`, {
+    return fetch(`${baseUrl}${endpoint}${queryString}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -68,7 +68,7 @@ export const secureFetch = (backendUrl = "", defaultHeaders = {}) => {
     queryParams = {}
   ) => {
     const queryString = buildQueryParams(queryParams);
-    return fetch(`${backendUrl}${endpoint}${queryString}`, {
+    return fetch(`${baseUrl}${endpoint}${queryString}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -80,7 +80,7 @@ export const secureFetch = (backendUrl = "", defaultHeaders = {}) => {
   };
   const secureDelete = (endpoint: string, headers = {}, queryParams = {}) => {
     const queryString = buildQueryParams(queryParams);
-    return fetch(`${backendUrl}${endpoint}${queryString}`, {
+    return fetch(`${baseUrl}${endpoint}${queryString}`, {
       method: "DELETE",
       headers: { ...defaultHeaders, ...headers },
     });
