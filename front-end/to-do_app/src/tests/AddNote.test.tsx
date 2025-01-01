@@ -3,6 +3,12 @@ import { fireEvent, screen } from "@testing-library/react";
 import { renderWithProviders } from "./tests_utils/utils";
 import { Modal } from "../components/Modal/Modal";
 import { ModalType } from "../types";
+import { errorMessages } from "../utils";
+
+// Calculate a date string with +2 years from the current date
+const futureDate = new Date();
+futureDate.setFullYear(futureDate.getFullYear() + 2);
+const futureDateString = futureDate.toISOString().split("T")[0];
 
 describe("AddNote", () => {
   it("renders modal addNote", () => {
@@ -25,14 +31,14 @@ describe("AddNote", () => {
     expect(cancelBtn).toBeInTheDocument();
   });
 
-  it("submits error, task text is blank'", async () => {
+  it(`submits error, ${errorMessages.emptyTaskText}`, async () => {
     renderWithProviders(<Modal type={ModalType.Add}></Modal>);
 
     const inputText = screen.getByLabelText("Name:");
     fireEvent.change(inputText, { target: { value: "" } });
 
     const inputDeadline = screen.getByLabelText("Deadline:");
-    fireEvent.change(inputDeadline, { target: { value: "2024-09-30" } });
+    fireEvent.change(inputDeadline, { target: { value: futureDateString } });
 
     const selectPrior = screen.getByLabelText("Priority:");
     fireEvent.change(selectPrior, { target: { value: "High" } });
@@ -41,11 +47,11 @@ describe("AddNote", () => {
 
     fireEvent.click(saveBtn);
 
-    const pError = screen.getByText("There must be a task text");
+    const pError = screen.getByText(errorMessages.emptyTaskText);
     expect(pError).toBeInTheDocument();
   });
 
-  it("submits error, task text must have less than 120chars'", async () => {
+  it(`submits error, ${errorMessages.taskTextLength}`, async () => {
     renderWithProviders(<Modal type={ModalType.Add}></Modal>);
 
     const inputText = screen.getByLabelText("Name:");
@@ -54,7 +60,7 @@ describe("AddNote", () => {
     fireEvent.change(inputText, { target: { value: text } });
 
     const inputDeadline = screen.getByLabelText("Deadline:");
-    fireEvent.change(inputDeadline, { target: { value: "2024-09-30" } });
+    fireEvent.change(inputDeadline, { target: { value: futureDateString } });
 
     const selectPrior = screen.getByLabelText("Priority:");
     fireEvent.change(selectPrior, { target: { value: "High" } });
@@ -63,7 +69,7 @@ describe("AddNote", () => {
 
     fireEvent.click(saveBtn);
 
-    const pError = screen.getByText("Task's text must be less than 120 chars.");
+    const pError = screen.getByText(errorMessages.taskTextLength);
     expect(pError).toBeInTheDocument();
   });
 });
